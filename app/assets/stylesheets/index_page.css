@@ -1,0 +1,11 @@
+.card{
+  width: 35em;
+  text-align: center;
+  margin: auto;
+}
+
+.index_source{
+  text-align: left;
+  margin: 0;
+  background: #E6E6E6;
+}

@@ -1,0 +1,16 @@
+<div class="row small-up-1 medium-up-3">
+<br />
+  <% @articles.each do |article| %>
+    <div class="column">
+      <div class="card">
+        <p class="index_source"><%= article.source %></p>
+        <div class="card-divider">
+          <h4><%= link_to "#{article.title}", article_path(article) %><h4/>
+        </div>
+        <div class="card-section">
+          <h6><%= article.description %></h6>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
