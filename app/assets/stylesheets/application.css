@@ -17,11 +17,29 @@
  */
 .header{
   background-color: cadetblue;
-  position: fixed; /* Set the navbar to fixed position */
+  position: absolute; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
   height: 5%;
 }
 body{
   background-color: #13363b;
+  padding:0px;
+  margin:0px;
+}
+
+.footer{
+  overflow: hidden;
+  position: fixed;
+  bottom:0;
+  width: 100%;
+  background-color: cadetblue;
+  height: 8%;
+  padding: 1%;
+  padding-bottom: 2.4%;
+  margin: 0%;
+  font-size: .8em;
+  height: 1px;
+  opacity: 0.9;
+  text-align: center;
 }
