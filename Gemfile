@@ -1,12 +1,16 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.3.3'
+ruby '2.3.8'
 
 gem 'pg'
+gem 'webpacker'
+gem 'react-rails'
+gem 'jquery-rails'
 gem 'rspec'
 gem 'foundation-rails', '~> 6.4.3.0'
 gem 'autoprefixer-rails'
+gem 'pry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
 # Use sqlite3 as the database for Active Record

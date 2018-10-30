@@ -5,7 +5,7 @@ class CreateArticles < ActiveRecord::Migration[5.2]
       t.string :description, null: false
       t.string :url, null: false
       t.string :source, null: false
-      
+
       t.timestamps null: false
     end
   end

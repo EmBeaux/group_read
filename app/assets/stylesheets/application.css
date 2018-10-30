@@ -17,7 +17,7 @@
  */
 .header{
   background-color: cadetblue;
-  position: absolute; /* Set the navbar to fixed position */
+  position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
   height: 5%;
@@ -29,8 +29,7 @@ body{
 }
 
 .footer{
-  overflow: hidden;
-  position: fixed;
+  position: sticky; 
   bottom:0;
   width: 100%;
   background-color: cadetblue;
