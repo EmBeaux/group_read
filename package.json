@@ -5,5 +5,24 @@
     "node": ">=6.0.0",
     "yarn": ">=0.25.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "babel-preset-react": "^6.24.1",
+    "prop-types": "^15.6.2",
+    "react": "~15.4.2",
+    "react-dom": "~15.4.2",
+    "react-router": "~3.2.0",
+    "react-simplert": "^0.0.2",
+    "react-toastify": "^4.4.0",
+    "redbox-react": "^1.6.0",
+    "sweetalert-react": "^0.4.11",
+    "react_ujs": "^2.4.4"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  },
+  "scripts": {
+    "start": "./bin/webpack-dev-server",
+    "test": "node_modules/.bin/karma start karma.conf.js"
+  }
 }
