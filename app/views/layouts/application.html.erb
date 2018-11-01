@@ -5,20 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title><%= content_for?(:title) ? yield(:title) : "GroupT" %></title>
-    <%= javascript_pack_tag 'application' %>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= javascript_pack_tag 'application' %>
 
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <header class="header">
-      <p><%= link_to "GroupT", root_path%></p>
-    </header>
+    <div class="header">
+      <h5 class="welcome"><%= link_to "Group Read", root_path %></h5>
+      <section class="top-bar-section">
+        <ul class="navbar-text">
+          <%- if current_user -%>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+          <%- else -%>
+            <%= link_to 'Sign Up', new_user_registration_path %>
+            <%= link_to 'Sign In', new_user_session_path %>
+          <%- end -%>
+        </ul>
+      </section>
+    </div>
+
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
 
     <%= yield %>
+
     <footer>
       <h1 class="footer"><%=link_to "About Us", "https://www.google.com" %> | <%=link_to "Contact Us", "http://www.wikipedia.com" %></h1>
     </footer>
