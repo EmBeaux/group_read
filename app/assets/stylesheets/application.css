@@ -21,6 +21,7 @@
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
   height: 5%;
+  display: flex;
 }
 body{
   background-color: #13363b;
@@ -29,7 +30,7 @@ body{
 }
 
 .footer{
-  position: sticky; 
+  position: sticky;
   bottom:0;
   width: 100%;
   background-color: cadetblue;
@@ -41,4 +42,14 @@ body{
   height: 1px;
   opacity: 0.9;
   text-align: center;
+}
+
+.logo-header{
+  float: left;
+  display:inline;
+}
+
+.navbar-text{
+  padding-left: 56em;
+  display: inline;
 }

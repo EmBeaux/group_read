@@ -11,6 +11,9 @@ gem 'rspec'
 gem 'foundation-rails', '~> 6.4.3.0'
 gem 'autoprefixer-rails'
 gem 'pry'
+gem 'devise'
+gem 'httparty'
+gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
 # Use sqlite3 as the database for Active Record
@@ -60,6 +63,10 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'
+end
+
+group :development, :test do
+  gem "dotenv-rails"
 end
 
 group :test do

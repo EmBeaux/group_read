@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @aricle = Article.save(params[:title], params(:description), params[:url])
+    @aricle = Article.save(params[:title], params(:description), params[:url], params[:source], params[:image])
 
     if @article.save?
 
@@ -16,6 +16,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    
+
   end
 end
