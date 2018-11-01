@@ -3,7 +3,8 @@ require_relative '../../app/models/article'
 
 RSpec.describe Article, type: :model do
   it "is valid with valid attributes" do
-    expect(Article.new(title: "This is an article title", description: "This is an article description", url: "https://www.google.com", source: "Huffington Post")).to be_valid
+    group = Group.create(name: "Group", interest: "group", description: "A group")
+    expect(Article.new(title: "This is an article title", description: "This is an article description", url: "https://www.google.com", source: "Huffington Post", group_id: group.id)).to be_valid
   end
   it "is not valid without an title" do
     article = Article.new(title: nil)
