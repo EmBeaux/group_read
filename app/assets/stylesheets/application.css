@@ -13,18 +13,13 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
-
  */
-.header{
-  background-color: cadetblue;
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
-  height: 5%;
-  display: flex;
+
+.top-bar{
+  background-color: #FFFFFFFF;
 }
 body{
-  background-color: #13363b;
+  background-color: #E7ECF0;
   padding:0px;
   margin:0px;
 }
@@ -33,7 +28,7 @@ body{
   position: sticky;
   bottom:0;
   width: 100%;
-  background-color: cadetblue;
+  background-color: #FFFFFF;
   height: 8%;
   padding: 1%;
   padding-bottom: 2.4%;
@@ -49,7 +44,18 @@ body{
   display:inline;
 }
 
-.navbar-text{
+ul.navbar-text{
+  background-color: #FFFFFF;
   padding-left: 56em;
   display: inline;
+}
+
+.top-bar-signout{
+  background-color: #FFFFFF;
+  margin-left: 21em;
+}
+
+.top-bar-signout-signout{
+  background-color: #FFFFFF;
+  margin-left: 18em;
 }

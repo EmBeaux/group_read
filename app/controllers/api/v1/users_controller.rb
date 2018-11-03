@@ -1,6 +1,9 @@
+require 'json/ext'
 class Api::V1::UsersController < ApiController
   def index
+    user = current_user
+    groups = user.groups
 
-  render json: current_user
+    render json: user
   end
 end

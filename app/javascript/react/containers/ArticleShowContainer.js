@@ -39,7 +39,7 @@ class ArticleShowContainer extends Component {
           title={article.title}
           description={article.description}
           url={article.url}
-          source={article.source.name}
+          source={article.source}
           image={article.image}
         />
       )

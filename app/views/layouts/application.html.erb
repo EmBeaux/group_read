@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "GroupT" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Group Read" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -14,18 +14,24 @@
   </head>
 
   <body>
-    <div class="header">
-      <h5 class="welcome"><%= link_to "Group Read", root_path %></h5>
-      <section class="top-bar-section">
-        <ul class="navbar-text">
-          <%- if current_user -%>
-            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-          <%- else -%>
-            <%= link_to 'Sign Up', new_user_registration_path %>
-            <%= link_to 'Sign In', new_user_session_path %>
-          <%- end -%>
-        </ul>
-      </section>
+    <div data-sticky-container>
+      <div class="top-bar sticky" data-sticky data-margin-top="0">
+        <h5 class="welcome"><%= link_to "Group Read", groups_path %></h5>
+        <section class="top-bar-section">
+          <ul class="navbar-text">
+            <%- if current_user -%>
+            <span class="top-bar-signout">
+              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+            </span>
+            <%- else -%>
+            <span class="top-bar-signout-signout">
+              <%= link_to 'Sign Up', new_user_registration_path %>
+              <%= link_to 'Sign In', new_user_session_path %>
+            </span>
+            <%- end -%>
+          </ul>
+        </section>
+      </div>
     </div>
 
     <% if notice %>

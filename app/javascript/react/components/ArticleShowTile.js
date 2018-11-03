@@ -8,13 +8,16 @@ const ArticleShowTile = (props) => {
   }else{
     image = props.image
   }
+
+
   return (
       <div>
         <br />
-        <div className="column">
-          <div className="card">
-
-            <p className="index_source">{props.source}</p>
+        <div className="column" id="article-card">
+          <div className="card" id="card-article">
+            <div className="index_source">
+              <p>{props.source}</p>
+            </div>
             <div className="card-divider">
               <Link to={`${props.url}`}>{props.title}</Link><br />
             </div>
@@ -25,7 +28,6 @@ const ArticleShowTile = (props) => {
             <div className="card-section">
               <h6>{props.description}</h6>
             </div>
-
           </div>
         </div>
       </div>
