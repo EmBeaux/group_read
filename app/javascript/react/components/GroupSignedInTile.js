@@ -15,6 +15,7 @@ const GroupSignedInTile = (props) => {
           description={props.description}
           interest={props.interest}
           followClick={props.followClick}
+          unfollowClick={props.unfollowClick}
           user={props.user}
         />
       </div>

@@ -9,7 +9,7 @@ const ArticleShowTile = (props) => {
     image = props.image
   }
 
-
+debugger
   return (
       <div>
         <br />
