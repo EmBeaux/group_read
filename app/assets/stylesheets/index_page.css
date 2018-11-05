@@ -75,5 +75,28 @@ img{
   margin-left: 4rem;
 }
 
-#card-description{
+.follow-btn{
+  color: white;
+  float: right;
+  margin-right: 2%;
+  background-color: #3778B5;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  margin-top: 1%;
+  cursor: pointer;
+}
+
+.follow-btn-true{
+  background-color: #0b3b7a;
+  color: white;
+  float: right;
+  margin-right: 2%;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  margin-top: 1%;
+  cursor: pointer;
 }
