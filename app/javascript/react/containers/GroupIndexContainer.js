@@ -4,20 +4,19 @@ import GroupSignedInTile from '../components/GroupSignedInTile.js'
 import TrendingFeedsTile from '../components/TrendingFeedsTile.js'
 import { Link } from 'react-router'
 
-  class GroupIndexContainer extends Component {
+class GroupIndexContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: {},
       articles: [],
-      followed: false,
-      featuredGroups: []
+      featuredGroups: [],
+      groups: []
     }
     this.followClick = this.followClick.bind(this)
   }
 
 followClick(formPayload){
-  this.setState({followed: true})
 
   fetch('/api/v1/memberships',{
     credentials: 'same-origin',
@@ -61,7 +60,8 @@ followClick(formPayload){
     .then(body => {
         this.setState({
           user: body,
-          featuredGroups: body.featured_groups
+          featuredGroups: body.featured_groups,
+          groups: body.groups
         })
     })
 
@@ -88,8 +88,7 @@ followClick(formPayload){
     let trendingFeeds = <TrendingFeedsTile/>
     let featuredTitle = "Featured Groups:"
 
-    if(this.state.user.groups){
-      if(this.state.user.groups.length < 3){
+      if(this.state.groups.length < 3 && this.state.featuredGroups == []){
         let arr = [1,2,3]
         let number = -1
         let number2 = 2
@@ -101,16 +100,16 @@ followClick(formPayload){
           number2++
           return(
             <GroupSignedInTile
-              key={this.state.user.featured_groups[number2].id}
-              id={this.state.user.featured_groups[number2].id}
-              name={this.state.user.featured_groups[number2].name}
-              description={this.state.user.featured_groups[number2].description}
-              interest={this.state.user.featured_groups[number2].interest}
-              featured_name={this.state.user.featured_groups[number].name}
-              featured_key={this.state.user.featured_groups[number].id}
-              featured_id={this.state.user.featured_groups[number].id}
-              featured_description={this.state.user.featured_groups[number].description}
-              featured_interest={this.state.user.featured_groups[number].interest}
+              key={this.state.featuredGroups[number2].id}
+              id={this.state.featuredGroups[number2].id}
+              name={this.state.featuredGroups[number2].name}
+              description={this.state.featuredGroups[number2].description}
+              interest={this.state.featuredGroups[number2].interest}
+              featured_name={this.state.featuredGroups[number].name}
+              featured_key={this.state.featuredGroups[number].id}
+              featured_id={this.state.featuredGroups[number].id}
+              featured_description={this.state.featuredGroups[number].description}
+              featured_interest={this.state.featuredGroups[number].interest}
               followClick={this.followClick}
               user={this.state.user}
             />
@@ -118,7 +117,7 @@ followClick(formPayload){
         })
       }else{
         let count = -1
-        let groups = this.state.user.groups
+        let groups = this.state.groups
         let size = 3;
         let threeGroups = groups.slice(0, size).map(group => {
           return group
@@ -132,20 +131,19 @@ followClick(formPayload){
             name={group.name}
             description={group.description}
             interest={group.interest}
-            featured_name={this.state.user.featured_groups[count].name}
-            featured_key={this.state.user.featured_groups[count].id}
-            featured_id={this.state.user.featured_groups[count].id}
-            featured_description={this.state.user.featured_groups[count].description}
-            featured_interest={this.state.user.featured_groups[count].interest}
+            featured_name={this.state.featuredGroups[count].name}
+            featured_key={this.state.featuredGroups[count].id}
+            featured_id={this.state.featuredGroups[count].id}
+            featured_description={this.state.featuredGroups[count].description}
+            featured_interest={this.state.featuredGroups[count].interest}
             followClick={this.followClick}
             user={this.state.user}
             />
           )
         })
       }
-    }
 
-  if(this.state.user.featured_groups && typeof this.state.user.groups == "undefined"){
+  if(this.state.featuredGroups && typeof this.state.groups == "undefined"){
     let arr = [1,2,3]
     let index = -1
     let index2 = 2
@@ -156,16 +154,16 @@ followClick(formPayload){
       index2++
       return(
         <GroupSignedInTile
-          key={this.state.user.featured_groups[index2].id}
-          id={this.state.user.featured_groups[index2].id}
-          name={this.state.user.featured_groups[index2].name}
-          description={this.state.user.featured_groups[index2].description}
-          interest={this.state.user.featured_groups[index2].interest}
-          featured_name={this.state.user.featured_groups[index].name}
-          featured_key={this.state.user.featured_groups[index].id}
-          featured_id={this.state.user.featured_groups[index].id}
-          featured_description={this.state.user.featured_groups[index].description}
-          featured_interest={this.state.user.featured_groups[index].interest}
+          key={this.state.featuredGroups[index2].id}
+          id={this.state.featuredGroups[index2].id}
+          name={this.state.featuredGroups[index2].name}
+          description={this.state.featuredGroups[index2].description}
+          interest={this.state.featuredGroups[index2].interest}
+          featured_name={this.state.featuredGroups[index].name}
+          featured_key={this.state.featuredGroups[index].id}
+          featured_id={this.state.featuredGroups[index].id}
+          featured_description={this.state.featuredGroups[index].description}
+          featured_interest={this.state.featuredGroups[index].interest}
           followClick={this.followClick}
           user={this.state.user}
         />
@@ -190,7 +188,6 @@ followClick(formPayload){
     }
 
     trendingFeeds.length = 20
-
     return(
       <div>
         <div className="groups-index">

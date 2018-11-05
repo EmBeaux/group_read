@@ -19,7 +19,7 @@ const ArticleShowTile = (props) => {
               <p>{props.source}</p>
             </div>
             <div className="card-divider">
-              <Link to={`${props.url}`}>{props.title}</Link><br />
+              <Link to={`${props.url}`} target="_blank">{props.title}</Link><br />
             </div>
             <div className="card-image">
               <img src={`${image}`} />

@@ -1,5 +1,6 @@
 class Api::V1::GroupsController < ApiController
 require 'pry'
+skip_before_action :verify_authenticity_token
   def show
     if Group.find(params["id"])
       @group = Group.find(params["id"])
@@ -21,17 +22,35 @@ require 'pry'
       end
     end
 
-    render json: @group.articles
+    render json: @group.articles.order("created_at desc")
   end
 
   def index
     user = current_user
-    @groups = user.groups
+    @groups = Group.all
 
     render json: @groups
   end
+
+  def new
+
+  end
+
+  def create
+    group = Group.new(group_params)
+
+    if group.save
+
+      render json: group
+    else
+
+      render json: group.errors.full_messages
+    end
+  end
+
+  private
+
+  def group_params
+    params.require(:group).permit(:name, :description, :interest)
+  end
 end
-
-
-
-# /v2/top-headlines

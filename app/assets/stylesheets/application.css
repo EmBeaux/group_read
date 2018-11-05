@@ -52,10 +52,16 @@ ul.navbar-text{
 
 .top-bar-signout{
   background-color: #FFFFFF;
-  margin-left: 21em;
+  margin-left: 20em;
 }
 
 .top-bar-signout-signout{
   background-color: #FFFFFF;
   margin-left: 18em;
+}
+
+.welcome a{
+  /* margin-right: 2em;
+  padding-right: 2em;
+  border: 1px solid black; */
 }
