@@ -16,7 +16,7 @@ const TrendingFeedsTile = (props) => {
         <div className="card" id="article-card">
           <p className="index_source">{props.source}</p>
           <div className="card-divider">
-            <Link to={`${props.url}`}>{props.title}</Link><br />
+            <Link to={`${props.url}`} target="_blank">{props.title}</Link><br />
           </div>
           <div className="card-image">
             <img src={`${image}`} />

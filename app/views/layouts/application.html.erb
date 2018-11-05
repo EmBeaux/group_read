@@ -7,7 +7,7 @@
     <title><%= content_for?(:title) ? yield(:title) : "Group Read" %></title>
 
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "application" %>
     <%= javascript_pack_tag 'application' %>
 
     <%= csrf_meta_tags %>
@@ -16,7 +16,7 @@
   <body>
     <div data-sticky-container>
       <div class="top-bar sticky" data-sticky data-margin-top="0">
-        <h5 class="welcome"><%= link_to "Group Read", groups_path %></h5>
+        <h5 class="welcome"><%= link_to "Group Read", root_path %></h5>
         <section class="top-bar-section">
           <ul class="navbar-text">
             <%- if current_user -%>
