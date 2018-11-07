@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title><%= content_for?(:title) ? yield(:title) : "Group Read" %></title>
 
     <%= stylesheet_link_tag    "application" %>
@@ -17,7 +16,7 @@
   <body>
     <div data-sticky-container>
       <div class="top-bar sticky" data-sticky data-margin-top="0">
-        <h5 class="welcome"><%= link_to "Group Read", root_path %></h5>
+        <h5 class="welcome"><%= link_to "Group Read", root_path %></h5><span class="logo-image"><%= image_tag("/book_06g.png") %></span>
         <section class="top-bar-section">
           <ul class="navbar-text">
             <%- if current_user -%>
