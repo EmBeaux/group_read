@@ -13,13 +13,13 @@ class FeaturedTile extends Component{
 
   handleClick() {
     let formPayload = {
-      user_id: this.props.user.id,
+      user_id: this.props.current_user.id,
       group_id: this.props.featured_id
     }
     this.props.followClick(formPayload)
     this.setState({
       btnClass: "follow-btn-true",
-      followButton: "followed"
+      followButton: "following"
     })
   }
   render(){

@@ -46,7 +46,6 @@ body{
 
 ul.navbar-text{
   background-color: #FFFFFF;
-  padding-left: 56em;
   display: inline;
 }
 
@@ -61,7 +60,5 @@ ul.navbar-text{
 }
 
 .welcome a{
-  /* margin-right: 2em;
-  padding-right: 2em;
-  border: 1px solid black; */
+  
 }
