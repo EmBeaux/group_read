@@ -9,14 +9,14 @@
 groups_attributes = [
   {name: "TrendingFeeds", interest: "trending", description: "Trending News!"},
   {name: "Wine moms!", interest: "Wine", description: "We love wine!"},
-  {name: "Esports", interest: "esports", description: "We love gaming!"}
-  {name: "Paintball group", interest: "paintball", description: "We love shooting eachother"}
-  {name: "Thanksgiving", interest: "thanksgiving turkey", description: "We love eating!"}
-  {name: "Christmas Ready", interest: "christmas", description: "We can't wait for christmas."}
-  {name: "Walking dead", interest: "zombies", description: "We love the walking dead!"}
-  {name: "Motocross", interest: "motocross", description: "We love dirtbikes dude."}
-  {name: "Coding!", interest: "coding", description: "We live and breath code."}
-  {name: "Tech Junkies", interest: "technology", description: "We love tech!"}
+  {name: "Esports", interest: "esports", description: "We love gaming!"},
+  {name: "Paintball group", interest: "paintball", description: "We love shooting eachother"},
+  {name: "Thanksgiving", interest: "thanksgiving turkey", description: "We love eating!"},
+  {name: "Christmas Ready", interest: "christmas", description: "We can't wait for christmas."},
+  {name: "Walking dead", interest: "zombies", description: "We love the walking dead!"},
+  {name: "Motocross", interest: "motocross", description: "We love dirtbikes dude."},
+  {name: "Coding!", interest: "coding", description: "We live and breath code."},
+  {name: "Tech Junkies", interest: "technology", description: "We love tech!"},
   {name: "Apple lovers", interest: "apple mac iphone", description: "We appreciate apple"}
 ]
 
