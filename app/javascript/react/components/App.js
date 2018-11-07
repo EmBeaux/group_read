@@ -18,17 +18,6 @@ export const App = (props) => {
         </Route>
       </Router>
   )
-  // return (
-  //   <div>
-  //     <Router history={browserHistory}>
-  //       <Route path="/" component={GroupIndexContainer}/>
-  //       <Route path="/groups" component={GroupIndexContainer}/>
-  //       <Route path="/groups/new" component={GroupFormContainer}/>
-  //       <Route path="/groups/:id" component={ArticleShowContainer}/>
-  //       <Route path="/users/:id" component={UserShowContainer}/>
-  //     </Router>
-  //   </div>
-  // )
 }
 
 export default App;

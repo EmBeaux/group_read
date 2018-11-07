@@ -9,6 +9,7 @@
 .card{
   border: 2px solid black;
   padding: 1em;
+  padding-bottom: 1.7em;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
   border-bottom-right-radius: 25px;
@@ -50,7 +51,7 @@ img{
 }
 
 .groups-index{
-  margin-top: 3%;
+  margin-top: 0%;
 }
 
 #featured-group-tile{
@@ -100,3 +101,28 @@ img{
   margin-top: 1%;
   cursor: pointer;
 }
+
+.index-search{
+  position: fixed;
+  top: 10;
+  left: 83%;
+  margin: 0;
+}
+
+#index-search{
+  background-color: #E8ECF0;
+  padding: 0
+}
+
+.welcome{
+  margin-top: .5%
+}
+
+#index-id-search{
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* .index-logo{
+  margin-bottom: 10%;
+} */

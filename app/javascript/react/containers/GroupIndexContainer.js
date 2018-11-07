@@ -3,6 +3,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import GroupSignedInTile from '../components/GroupSignedInTile.js'
 import TrendingFeedsTile from '../components/TrendingFeedsTile.js'
 import { Link } from 'react-router'
+import SearchBarTile from '../components/SearchBarTile'
+import ArticleShowTile from '../components/ArticleShowTile'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, far, fas } from '@fortawesome/free-solid-svg-icons'
 
 class GroupIndexContainer extends Component {
   constructor(props) {
@@ -15,6 +20,56 @@ class GroupIndexContainer extends Component {
     }
     this.followClick = this.followClick.bind(this)
     this.unfollowClick = this.unfollowClick.bind(this)
+    this.likeClick = this.likeClick.bind(this)
+    this.unlikeClick = this.unlikeClick.bind(this)
+  }
+
+  likeClick(formPayload){
+    fetch('/api/v1/likes',{
+      credentials: 'same-origin',
+      method: "post",
+      body: JSON.stringify(formPayload),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+
+    })
+    .catch(error => console.error('Error:', error));
+    this.forceUpdate()
+  }
+
+  unlikeClick(formPayload){
+    fetch(`/api/v1/likes/${formPayload.article_id}`,{
+      credentials: 'same-origin',
+      method: "delete"
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+    })
+    .catch(error => console.error('Error:', error));
+    this.forceUpdate()
   }
 
   followClick(formPayload){
@@ -105,13 +160,12 @@ class GroupIndexContainer extends Component {
   }
 
   render() {
-    console.log("Index page is rendering")
+    library.add(faHeart)
     let groupTitle = "Your Groups:"
     let featuredTitle = "Featured Groups:"
     let signedInTiles = "Haven't mounted";
-    let trendingFeeds = <TrendingFeedsTile/>
-if(this.state.groups != null && this.state.featuredGroups != null && this.state.groups.length < 3){
-
+    let articles;
+    if(this.state.groups != null && this.state.featuredGroups != null && this.state.groups.length < 3){
       let arr = [1,2,3]
       let number = -1
       let number2 = 2
@@ -171,16 +225,23 @@ if(this.state.groups != null && this.state.featuredGroups != null && this.state.
 
     }
 
-    if(this.state.articles != null){
-      trendingFeeds = this.state.articles.map(feed => {
+    if (this.state.articles != null){
+      articles = this.state.articles.map(article => {
         return(
-          <TrendingFeedsTile
-          key={feed.id}
-          title={feed.title}
-          description={feed.description}
-          image={feed.image}
-          url={feed.url}
-          source={feed.source}
+          <ArticleShowTile
+          key={article.id}
+          id={article.id}
+          title={article.title}
+          description={article.description}
+          url={article.url}
+          source={article.source}
+          image={article.image}
+          likeCount={article.likecount}
+          likeClick={this.likeClick}
+          unlikeClick={this.unlikeClick}
+          user={this.state.user}
+          likeClass={"like-btn-true"}
+          likeButton={<FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="heart" size="2x"/>}
           />
         )
       })
@@ -188,8 +249,11 @@ if(this.state.groups != null && this.state.featuredGroups != null && this.state.
 
     return(
       <div>
+        <div className="index-search" id="index-id-search">
+          <SearchBarTile/>
+        </div>
         <div className="groups-index">
-          <h1>Welcome to Group Read</h1>
+          <h1 className="index-logo">Welcome to Group Read</h1>
             <div className="grid-x small-up-1 medium-up-3">
               <div className="cell small-6" id="your-groups-title">
                 <h3>{groupTitle}</h3>
@@ -200,11 +264,10 @@ if(this.state.groups != null && this.state.featuredGroups != null && this.state.
                 <h3>{featuredTitle}</h3>
               </div>
             </div>
-
-        {signedInTiles}
-        <div className="group-bottom">
-          <h1>Trending news feeds!</h1>
-            {trendingFeeds}
+          {signedInTiles}
+          <div className="group-bottom">
+            <h1>Trending news feeds!</h1>
+            {articles}
           </div>
         </div>
       </div>
@@ -213,28 +276,3 @@ if(this.state.groups != null && this.state.featuredGroups != null && this.state.
 }
 
 export default GroupIndexContainer;
-// let arr = [1,2,3]
-// let index = -1
-// let index2 = 2
-// groupTitle = "Featured Groups:"
-// featuredTitle = ""
-// signedInTiles = arr.map(group => {
-//   index++
-//   index2++
-//   return(
-//     <GroupSignedInTile
-//     key={this.state.featuredGroups[index2].id}
-//     id={this.state.featuredGroups[index2].id}
-//     name={this.state.featuredGroups[index2].name}
-//     description={this.state.featuredGroups[index2].description}
-//     interest={this.state.featuredGroups[index2].interest}
-//     featured_name={this.state.featuredGroups[index].name}
-//     featured_key={this.state.featuredGroups[index].id}
-//     featured_id={this.state.featuredGroups[index].id}
-//     featured_description={this.state.featuredGroups[index].description}
-//     featured_interest={this.state.featuredGroups[index].interest}
-//     followClick={this.followClick}
-//     user={this.state.user}
-//     />
-//   )
-// })

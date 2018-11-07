@@ -1,3 +1,4 @@
+require 'pry'
 class ArticlesController < ApplicationController
   def new
     @article = Article.new
@@ -13,6 +14,12 @@ class ArticlesController < ApplicationController
 
       render new_article_path
     end
+  end
+
+  def update
+    # @bike = Bike.find(params[:id])
+    # @bike.update(bike_params)
+    # redirect_to bike_path(@bike)
   end
 
   def show

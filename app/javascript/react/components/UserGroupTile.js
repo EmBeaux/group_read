@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
 
-class YourGroupTile extends Component{
+class UserGroupTile extends Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -13,14 +13,14 @@ class YourGroupTile extends Component{
 
   handleClick(){
     let formPayload = {
-      user_id: this.props.user.id,
+      user_id: this.props.current_user.id,
       group_id: this.props.id
     }
     if(this.state.followButton == "follow"){
       this.props.followClick(formPayload)
       this.setState({
         btnClass: "follow-btn-true",
-        followButton: "followed"
+        followButton: "following"
       })
     }else{
       this.props.unfollowClick(formPayload)
@@ -32,12 +32,12 @@ class YourGroupTile extends Component{
   }
 
   componentDidMount(){
-    for (let i=0; i < this.props.user.memberships.length; i++) {
-        if (this.props.user.memberships[i].group_id == this.props.id){
-            this.setState({followButton: "followed"})
+    for (let i=0; i < this.props.current_user.memberships.length; i++) {
+        if (this.props.current_user.memberships[i].group_id == this.props.id){
+            this.setState({followButton: "following"})
           }
         }
-  }
+      }
   render(){
     return (
       <div className="card">
@@ -56,4 +56,4 @@ class YourGroupTile extends Component{
   }
 }
 
-export default YourGroupTile;
+export default UserGroupTile;
