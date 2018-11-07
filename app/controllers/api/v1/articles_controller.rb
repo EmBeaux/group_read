@@ -1,6 +1,6 @@
 class Api::V1::ArticlesController < ApiController
   def index
-    @group = Group.find_or_create_by(name: "TrendingFeeds", interest: "trending", description: "Trending Headlines!")
+    @group = Group.find_by(name: "TrendingFeeds", interest: "trending", description: "Trending News!")
 
     @url = 'https://newsapi.org/v2/top-headlines?' +
     "q=#{@group["interest"]}&" +
