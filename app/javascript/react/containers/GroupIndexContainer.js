@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import GroupSignedInTile from '../components/GroupSignedInTile.js'
-import TrendingFeedsTile from '../components/TrendingFeedsTile.js'
 import { Link } from 'react-router'
 import SearchBarTile from '../components/SearchBarTile'
 import ArticleShowTile from '../components/ArticleShowTile'
@@ -22,6 +21,8 @@ class GroupIndexContainer extends Component {
     this.unfollowClick = this.unfollowClick.bind(this)
     this.likeClick = this.likeClick.bind(this)
     this.unlikeClick = this.unlikeClick.bind(this)
+    this.commentClick = this.commentClick.bind(this)
+    this.uncommentClick = this.uncommentClick.bind(this)
   }
 
   likeClick(formPayload){
@@ -72,8 +73,55 @@ class GroupIndexContainer extends Component {
     this.forceUpdate()
   }
 
-  followClick(formPayload){
+  commentClick(formPayload){
+    fetch('/api/v1/comments',{
+      credentials: 'same-origin',
+      method: "post",
+      body: JSON.stringify(formPayload),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
 
+    })
+    .catch(error => console.error('Error:', error));
+    this.forceUpdate()
+  }
+
+  uncommentClick(formPayload){
+    fetch(`/api/v1/comments/${formPayload.article_id}`,{
+      credentials: 'same-origin',
+      method: "delete"
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+    })
+    .catch(error => console.error('Error:', error));
+    this.forceUpdate()
+  }
+
+  followClick(formPayload){
     fetch('/api/v1/memberships',{
       credentials: 'same-origin',
       method: "post",
@@ -99,6 +147,7 @@ class GroupIndexContainer extends Component {
     .catch(error => console.error('Error:', error));
     this.forceUpdate()
   }
+
   unfollowClick(formPayload){
 
     fetch(`/api/v1/memberships/${formPayload.group_id}`,{
@@ -123,8 +172,6 @@ class GroupIndexContainer extends Component {
   }
 
   componentDidMount() {
-    console.log("Index page is mounting")
-
     fetch('/api/v1/users')
     .then(response => {
       if (response.ok) {
@@ -237,11 +284,13 @@ class GroupIndexContainer extends Component {
           source={article.source}
           image={article.image}
           likeCount={article.likecount}
+          commentCount={article.commentcount}
           likeClick={this.likeClick}
           unlikeClick={this.unlikeClick}
+          commentClick={this.commentClick}
+          uncommentClick={this.uncommentClick}
           user={this.state.user}
-          likeClass={"like-btn-true"}
-          likeButton={<FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="heart" size="2x"/>}
+          group_id={1}
           />
         )
       })

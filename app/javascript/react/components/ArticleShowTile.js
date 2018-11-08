@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
+import CommentTile from './CommentTile'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, far, fas } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, far, fas, faComment } from '@fortawesome/free-solid-svg-icons'
 
 class ArticleShowTile extends Component {
   constructor(props) {
@@ -10,13 +11,18 @@ class ArticleShowTile extends Component {
     this.state = {
       likeClass: "like-btn",
       likeButton: <FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="heart" size="2x"/>,
-      count: this.props.likeCount
+      likeCount: this.props.likeCount,
+      commentClass: "comment-btn",
+      commentButton:  <FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="comment" size="2x"/>,
+      commentCount: this.props.commentCount,
+      commentForm: ""
     }
-    this.handleClick = this.handleClick.bind(this)
+    this.handleLikeClick = this.handleLikeClick.bind(this)
+    this.handleCommentClick = this.handleCommentClick.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount(){
-    console.log("componentDidMount: " + this.props.user)
     if(this.props.user != null){
       for (let i=0; i < this.props.user.likes.length; i++) {
         if (this.props.user.likes[i].article_id == this.props.id){
@@ -30,30 +36,55 @@ class ArticleShowTile extends Component {
   }
 
 
-  handleClick(){
+  handleLikeClick(){
     let formPayload = {
       user_id: this.props.user.id,
       article_id: this.props.id
     }
     let newCount;
     if(this.state.likeButton.props.color == '#E8ECF0'){
-      newCount = this.state.count + 1
+      newCount = this.state.likeCount + 1
       this.props.likeClick(formPayload)
       this.setState({
         likeClass: "like-btn-true",
         likeButton: <FontAwesomeIcon color= 'red' prefix="fas" icon="heart" size="2x" />,
-        count: newCount
+        likeCount: newCount
       })
     }else{
       this.props.unlikeClick(formPayload)
-      newCount = this.state.count - 1
+      newCount = this.state.likeCount - 1
       this.setState({
         likeClass: "like-btn",
         likeButton: <FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="heart" size="2x"/>,
-        count: newCount
+        likeCount: newCount
       })
     }
   }
+
+  handleSubmit(formPayload){
+    this.props.commentClick(formPayload)
+    let newCount = this.state.commentCount + 1
+    this.setState({
+      commentForm: "",
+      commentButton: <FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="comment" size="2x"/>,
+      commentCount: newCount
+    })
+  }
+
+  handleCommentClick(){
+    if(this.state.commentButton.props.color == '#E8ECF0'){
+      this.setState({
+        commentButton: <FontAwesomeIcon color= 'grey' prefix="fas" icon="comment" size="2x" />,
+        commentForm: <CommentTile handleSubmit={this.handleSubmit} user={this.props.user} id={this.props.id} group_id={this.props.group_id} />
+      })
+    }else{
+      this.setState({
+        commentButton: <FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="comment" size="2x"/>,
+        commentForm: ""
+      })
+    }
+  }
+
 
 
   render(){
@@ -66,7 +97,7 @@ class ArticleShowTile extends Component {
 
 
     library.add(faHeart)
-console.log("render: " + this.props.user)
+    library.add(faComment)
     return (
         <div>
           <br />
@@ -82,7 +113,10 @@ console.log("render: " + this.props.user)
                   <img src={`${image}`} />
                 </div>
                 <div className="card-section">
-              <h6>{this.props.description}<span onClick={this.handleClick} className={this.state.likeClass}>&nbsp;{this.state.likeButton}<span className="like-count">{this.state.count}</span></span></h6>
+              <h6>{this.props.description}<span onClick={this.handleCommentClick} className={this.state.commentClass}>&nbsp;{this.state.commentButton}<span className="comment-count">{this.state.commentCount}</span></span><span onClick={this.handleLikeClick} className={this.state.likeClass}>&nbsp;{this.state.likeButton}<span className="like-count">{this.state.likeCount}</span></span></h6>
+            </div>
+            <div className="comment-form">
+              {this.state.commentForm}
             </div>
           </div>
         </div>

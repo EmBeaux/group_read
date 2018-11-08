@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :groups
       resources :memberships
       resources :likes
+      resources :comments
     end
   end
 end

@@ -42,3 +42,26 @@
   font-size: 28px;
   padding-left: 5px;
 }
+
+.comment-count{
+  color: black;
+  font-size: 28px;
+  padding-left: 10px;
+}
+
+.comment-btn{
+  color: white;
+  float: right;
+  margin-top: 1%;
+  cursor: pointer;
+  position: absolute;
+  bottom: 1;
+  right: 0;
+  margin-right: 38%;
+  padding-top: .8%;
+}
+
+.comment-form{
+  margin-top: 1em;
+  display: block;
+}
