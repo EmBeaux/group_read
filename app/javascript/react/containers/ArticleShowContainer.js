@@ -17,6 +17,56 @@ class ArticleShowContainer extends Component {
     }
     this.likeClick = this.likeClick.bind(this)
     this.unlikeClick = this.unlikeClick.bind(this)
+    this.commentClick = this.commentClick.bind(this)
+    this.uncommentClick = this.uncommentClick.bind(this)
+  }
+
+  commentClick(formPayload){
+    fetch('/api/v1/comments',{
+      credentials: 'same-origin',
+      method: "post",
+      body: JSON.stringify(formPayload),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+
+    })
+    .catch(error => console.error('Error:', error));
+    this.forceUpdate()
+  }
+
+  uncommentClick(formPayload){
+    fetch(`/api/v1/comments/${formPayload.article_id}`,{
+      credentials: 'same-origin',
+      method: "delete"
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+    })
+    .catch(error => console.error('Error:', error));
+    this.forceUpdate()
   }
 
   likeClick(formPayload){
@@ -111,11 +161,15 @@ class ArticleShowContainer extends Component {
           source={article.source}
           image={article.image}
           likeCount={article.likecount}
+          commentCount={article.commentcount}
           likeClick={this.likeClick}
           unlikeClick={this.unlikeClick}
+          commentClick={this.commentClick}
+          uncommentClick={this.uncommentClick}
           user={this.state.user}
           likeClass={"like-btn-true"}
           likeButton={<FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="heart" size="2x"/>}
+          group_id={this.props.params.id}
           />
         )
       })

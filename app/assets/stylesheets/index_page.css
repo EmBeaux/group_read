@@ -77,6 +77,7 @@ img{
 }
 
 .follow-btn{
+  padding: .5em;
   color: white;
   float: right;
   margin-right: 2%;
@@ -90,6 +91,7 @@ img{
 }
 
 .follow-btn-true{
+  padding: .5em;
   background-color: #0b3b7a;
   color: white;
   float: right;
