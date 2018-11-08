@@ -6,7 +6,7 @@ RSpec.describe Comment, type: :model do
     group = Group.create(name: "Hello", interest: "hello", description: "bleh")
     user = User.create(email: "matthew.bowler123@gmail.com", encrypted_password: "smith", password: "smithhhhhh")
     article = Article.create!(title: "Hello", url: "hello", description: "bleh", source: "bleh", group_id: group.id)
-    expect(Comment.new(user_id: user.id, article_id: article.id, comment: "Hello")).to be_valid
+    expect(Comment.new(user_id: user.id, article_id: article.id, comment: "Hello", email: user.email)).to be_valid
   end
   it "is not valid without a article id" do
     comment = Comment.new(article_id: nil)
@@ -18,6 +18,10 @@ RSpec.describe Comment, type: :model do
   end
   it "is not valid without a comment" do
     comment = Comment.new(comment: nil)
+    expect(comment).to_not be_valid
+  end
+  it "is not valid without an email" do
+    comment = Comment.new(email: nil)
     expect(comment).to_not be_valid
   end
 end
