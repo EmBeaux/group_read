@@ -28,15 +28,14 @@ class SearchBarTile extends Component {
   }
 
   onSearchSubmit(){
-    this.setState({searchObj: this.state.groups.find(o => o.name == `${this.state.search}`)});
-    let searchObj = this.state.searchObj
-    setTimeout(function(){
-      if(searchObj != undefined && searchObj != ""){
-          browserHistory.push(`/groups/${searchObj.id}`)
-      }else{
-        console.log("not found")
-      }
-    }, 1000);
+    const searchObj = this.state.groups.find(o => o.name == `${this.state.search}`)
+    this.setState({searchObj});
+    if(searchObj != undefined && searchObj != ""){
+        browserHistory.push(`/groups/${searchObj.id}`)
+    }
+    else {
+      console.log("not found")
+    }
   }
 
 

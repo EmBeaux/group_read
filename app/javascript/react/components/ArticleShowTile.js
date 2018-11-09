@@ -75,7 +75,7 @@ class ArticleShowTile extends Component {
     if(this.state.commentButton.props.color == '#E8ECF0'){
       this.setState({
         commentButton: <FontAwesomeIcon color= 'grey' prefix="fas" icon="comment" size="2x" />,
-        commentForm: <CommentTile handleSubmit={this.handleSubmit} user={this.props.user} id={this.props.id} group_id={this.props.group_id} />
+        commentForm: <CommentTile handleSubmit={this.handleSubmit} user={this.props.user} id={this.props.id} group_id={this.props.group_id} handleCommentClick={this.handleCommentClick}/>
       })
     }else{
       this.setState({

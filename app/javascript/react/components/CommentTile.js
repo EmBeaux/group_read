@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import TextField from './TextField.js'
 import IndividualCommentTile from './IndividualCommentTile'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {far, faCaretUp } from '@fortawesome/free-solid-svg-icons'
 
 class CommentTile extends Component {
   constructor(props) {
     super(props);
   this.state = {
     comment: "",
-    comments: null
+    comments: null,
+    uparrow: null
   }
   this.handleSubmit = this.handleSubmit.bind(this)
   this.handleClear = this.handleClear.bind(this)
@@ -17,6 +21,7 @@ class CommentTile extends Component {
 handleCommentChange(event){
   this.setState({comment: event.target.value})
 }
+
 
 handleClear(){
   this.setState({
@@ -34,7 +39,6 @@ handleSubmit(event){
   this.props.handleSubmit(payload)
   this.handleClear()
 }
-
 
 componentDidMount(){
   fetch(`/api/v1/comments/${this.props.group_id}`)
@@ -55,6 +59,9 @@ componentDidMount(){
 
 
 render(){
+  let uparrow;
+
+  library.add(faCaretUp)
   let mappedComments = ["", ""]
   let comments = []
   if(this.state.comments != null){
@@ -66,6 +73,7 @@ render(){
       mappedComments = comments.map(comment => {
       return(
         <IndividualCommentTile
+          user_id={comment.user_id}
           key={comment.id}
           commentText={comment.comment}
           email={comment.email}
@@ -74,20 +82,25 @@ render(){
     })
   }
 
+
   let mappedCommentsOrdered = mappedComments.reverse()
     return (
       <div>
         <h5>{this.state.error}</h5>
-        <form className="callout" onSubmit={this.handleSubmit}>
+        <form className="comment-form" onSubmit={this.handleSubmit}>
           <TextField
-          label = "Comment"
+          label = "Add a new Comment!"
           content = {this.state.comment}
           handleChange = {this.handleCommentChange}
           name="comment"
+          id="comment"
           />
-          <input type="submit" className="button" value="Submit"/>
+          <input type="submit" id="comment-submit" value="Submit"/>
         </form>
         {mappedCommentsOrdered}
+        <div className="collapse-arrow">
+          <FontAwesomeIcon color= 'grey' prefix="fas" icon="caret-up" size="2x" onClick={this.props.handleCommentClick}/>
+        </div>
       </div>
     )
   }
