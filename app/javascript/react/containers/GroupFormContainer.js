@@ -77,26 +77,30 @@ class GroupFormContainer extends Component {
     return(
       <div>
         <h5>{this.state.error}</h5>
-        <form className="callout" onSubmit={this.handleSubmit}>
+        <h2 className="group-form-label">Make a new Group!</h2>
+        <form className="callout" id="new-group-wrap" onSubmit={this.handleSubmit}>
           <TextField
             label = "Group Name"
             content = {this.state.name}
             handleChange = {this.handleNameChange}
             name="name"
+            className = "group-name-input"
           />
           <TextField
-            label = "Interest of Group"
+            label = 'Interest of Group (If the interest is multiple words put it in quotes EX: "World Series")'
             content = {this.state.interest}
             handleChange = {this.handleInterestChange}
             name="interest"
+            className = "group-interest-input"
           />
           <TextField
             label = "Description of Group"
             content = {this.state.description}
             handleChange = {this.handleDescriptionChange}
             name="description"
+            className = "group-description-input"
           />
-          <input type="submit" className="button" value="Submit" onClick={this.handleSubmit}/>
+          <input type="submit" className="button-group" value="Submit" onClick={this.handleSubmit}/>
         </form>
       </div>
     )

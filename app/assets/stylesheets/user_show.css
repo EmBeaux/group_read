@@ -1,8 +1,7 @@
 .scroll {
-  width: 350px;
-  margin: 0;
-  margin-left: 2em;
-  margin-bottom: 8em;
+  width: 500px;
+  margin: auto;
+  margin-top: 2em;
   background-color: #EAF5FC;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
@@ -11,9 +10,9 @@
 }
 
 .scroller {
-  margin: 0 auto;
+  margin: auto;
   height: 600px;
-  width: 300px;
+  width: 450px;
   overflow: auto;
 }
 
@@ -21,10 +20,8 @@
   margin: 30px 0;
 }
 .scroll2 {
-  width: 350px;
-  margin: 0;
-  margin-right: 2em;
-  margin-bottom: 8em;
+  width: 500px;
+  margin: auto;
   background-color: #EAF5FC;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
@@ -33,5 +30,19 @@
 }
 
 #all-groups-scroll{
-  margin-left: 26em;
+  margin-left: 22em;
+  margin-top: 2em;
+}
+
+.your-groups-title{
+  margin-top: 4em;
+}
+
+#your-liked-title{
+  margin-top: 2em;
+  margin-left: 4em;
+}
+
+.all-groups{
+  margin-right: 10em;
 }

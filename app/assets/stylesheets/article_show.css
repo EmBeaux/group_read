@@ -35,6 +35,7 @@
   border-bottom-left-radius: 25px;
   padding: 1em;
   background-color: #FEFEFE;
+  max-width: 18em;
 }
 
 .like-count{
@@ -51,7 +52,6 @@
 
 .comment-btn{
   color: white;
-  float: right;
   margin-top: 1%;
   cursor: pointer;
   position: absolute;
@@ -64,4 +64,15 @@
 .comment-form{
   margin-top: 1em;
   display: block;
+}
+
+.collapse-arrow{
+  cursor: pointer;
+  margin-right: 48%;
+  margin-left: 48%;
+  padding-left: 48%;
+}
+
+#card-article{
+  padding-bottom: 2%;
 }

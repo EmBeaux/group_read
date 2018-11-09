@@ -279,7 +279,7 @@ class UserShowContainer extends Component {
         </div>
         <div className="grid-x small-up-1 medium-up-3">
           <div className="cell small-6" id="your-groups-title">
-          <h4>{email}'s Groups:</h4>
+          <h4 className="user-show-groups-title">{email}'s Groups:</h4>
             <div className="user-groups">
               <div className="scroll">
                 <div className="scroller">
@@ -292,7 +292,7 @@ class UserShowContainer extends Component {
             </div>
           <div className="cell small-6" id="all-groups-scroll">
           <h4>All Groups:</h4>
-            <div className="user-groups">
+            <div className="all-groups">
               <div className="scroll2">
                 <div className="scroller">
                   <div className="item">
@@ -304,8 +304,8 @@ class UserShowContainer extends Component {
           </div>
         </div>
         <div className="liked-articles">
-        <h1>Liked Articles</h1>
-        {likedArticles.reverse()}
+          <h1>Liked Articles</h1>
+          {likedArticles.reverse()}
         </div>
       </div>
     )

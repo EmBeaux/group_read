@@ -306,7 +306,7 @@ class GroupIndexContainer extends Component {
             <div className="grid-x small-up-1 medium-up-3">
               <div className="cell small-6" id="your-groups-title">
                 <h3>{groupTitle}</h3>
-                <Link to="/groups/new" className="button">Make a new Group!</Link>
+                <Link to="/groups/new" className="button-index">Make a new Group!</Link>
               </div>
 
               <div className="cell small-6" id="featured-groups-title">
