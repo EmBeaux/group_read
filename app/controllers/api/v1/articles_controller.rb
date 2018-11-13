@@ -20,7 +20,6 @@ class Api::V1::ArticlesController < ApiController
         end
       end
     end
-
     render json: @group.articles.order("created_at desc")
   end
 end
