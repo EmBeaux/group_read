@@ -1,7 +1,6 @@
 .scroll {
   width: 500px;
   margin: auto;
-  margin-top: 2em;
   background-color: #EAF5FC;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
@@ -32,17 +31,23 @@
 #all-groups-scroll{
   margin-left: 22em;
   margin-top: 2em;
+  margin-bottom: 5em;
 }
 
-.your-groups-title{
-  margin-top: 4em;
+.user-groups{
+  margin-top: 2em;
 }
 
 #your-liked-title{
   margin-top: 2em;
-  margin-left: 4em;
+  margin-left: 2em;
 }
 
 .all-groups{
   margin-right: 10em;
+  margin-bottom: 5em;
+}
+
+.item3{
+  padding-top: 0;
 }

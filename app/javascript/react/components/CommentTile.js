@@ -71,12 +71,14 @@ render(){
         }
       })
       mappedComments = comments.map(comment => {
+        let emailArr = comment.email.split('@')
+        let email = emailArr[0]
       return(
         <IndividualCommentTile
           user_id={comment.user_id}
           key={comment.id}
           commentText={comment.comment}
-          email={comment.email}
+          email={email}
         />
       )
     })
