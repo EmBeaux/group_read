@@ -5,7 +5,7 @@ import SearchBar from 'material-ui-search-bar'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { browserHistory } from 'react-router'
 import SearchBarTile from '../components/SearchBarTile'
-import ArticleShowTile from '../components/ArticleShowTile.js'
+import ArticleScrollTile from '../components/ArticleScrollTile.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, far, fas } from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +16,7 @@ class UserShowContainer extends Component {
     this.state = {
       user: null,
       groups: null,
-      articles: null,
+      likedArticles: null,
       current_user: null
     }
     this.followClick = this.followClick.bind(this)
@@ -189,7 +189,8 @@ class UserShowContainer extends Component {
     .then(responses => {
       this.setState({
         groups: responses[1],
-        articles: responses[0].articles,
+        likedArticles: responses[0].likes,
+        commentedArticles: responses[0].comments,
         user: responses[0],
         current_user: responses[2]
       })
@@ -199,11 +200,12 @@ class UserShowContainer extends Component {
   render() {
     library.add(faHeart)
 
-    let email;
+    let newEmail = "abc"
 
     if(this.state.user != null){
       let emailArray = this.state.user.email.split('@')
-      email = emailArray[0]
+      let email = emailArray[0]
+      newEmail = email[0].toUpperCase() + email.slice(1)
     }
 
     let yourGroups;
@@ -244,22 +246,21 @@ class UserShowContainer extends Component {
       })
     }
     let groups;
-    let likedArticles = ["", ""]
+    let commentedArticles = ["", ""]
 
-    if (this.state.articles != null){
-      likedArticles = this.state.articles.map(article => {
-
+    if (this.state.commentedArticles != null){
+      commentedArticles = this.state.commentedArticles.map(article => {
         return(
-          <ArticleShowTile
-          key={article.id}
-          id={article.id}
-          title={article.title}
-          description={article.description}
-          url={article.url}
-          source={article.source}
-          image={article.image}
-          likeCount={article.likecount}
-          commentCount={article.commentcount}
+          <ArticleScrollTile
+          key={article.commented_article.id}
+          id={article.commented_article.id}
+          title={article.commented_article.title}
+          description={article.commented_article.description}
+          url={article.commented_article.url}
+          source={article.commented_article.source}
+          image={article.commented_article.image}
+          likeCount={article.commented_article.likecount}
+          commentCount={article.commented_article.commentcount}
           likeClick={this.likeClick}
           unlikeClick={this.unlikeClick}
           commentClick={this.commentClick}
@@ -267,7 +268,35 @@ class UserShowContainer extends Component {
           user={this.state.current_user}
           likeClass={"like-btn-true"}
           likeButton={<FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="heart" size="2x"/>}
-          group_id={article.group_id}
+          group_id={article.commented_article.group_id}
+          />
+        )
+      })
+    }
+    let likedArticles = ["", ""]
+
+    if (this.state.likedArticles != null){
+      likedArticles = this.state.likedArticles.map(article => {
+
+        return(
+          <ArticleScrollTile
+          key={article.liked_article.id}
+          id={article.liked_article.id}
+          title={article.liked_article.title}
+          description={article.liked_article.description}
+          url={article.liked_article.url}
+          source={article.liked_article.source}
+          image={article.liked_article.image}
+          likeCount={article.liked_article.likecount}
+          commentCount={article.liked_article.commentcount}
+          likeClick={this.likeClick}
+          unlikeClick={this.unlikeClick}
+          commentClick={this.commentClick}
+          uncommentClick={this.uncommentClick}
+          user={this.state.current_user}
+          likeClass={"like-btn-true"}
+          likeButton={<FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="heart" size="2x"/>}
+          group_id={article.liked_article.group_id}
           />
         )
       })
@@ -279,8 +308,8 @@ class UserShowContainer extends Component {
         </div>
         <div className="grid-x small-up-1 medium-up-3">
           <div className="cell small-6" id="your-groups-title">
-          <h4 className="user-show-groups-title">{email}'s Groups:</h4>
             <div className="user-groups">
+            <h4>{newEmail}'s Groups:</h4>
               <div className="scroll">
                 <div className="scroller">
                   <div className="item">
@@ -303,9 +332,33 @@ class UserShowContainer extends Component {
             </div>
           </div>
         </div>
-        <div className="liked-articles">
-          <h1>Liked Articles</h1>
-          {likedArticles.reverse()}
+        <div className="grid-x small-up-1 medium-up-3">
+          <div className="cell small-6" id="your-groups-title">
+            <div className="user-groups">
+            <h4>{newEmail}'s Liked Articles:</h4>
+              <div className="scroll">
+                <div className="scroller">
+                  <div className="item3">
+                    <div className="liked-articles">
+                      {likedArticles.reverse()}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="cell small-6" id="all-groups-scroll">
+            <div className="all-comments">
+            <h4>{newEmail}'s Comments:</h4>
+              <div className="scroll2">
+                <div className="scroller">
+                  <div className="item3">
+                    {commentedArticles}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )
