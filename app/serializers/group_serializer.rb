@@ -3,4 +3,5 @@ class GroupSerializer < ActiveModel::Serializer
 
 
   has_many :articles
+  has_many :users
 end

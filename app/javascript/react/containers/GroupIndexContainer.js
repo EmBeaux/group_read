@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import GroupSignedInTile from '../components/GroupSignedInTile.js'
 import { Link } from 'react-router'
+import ReactLoading from 'react-loading';
 import SearchBarTile from '../components/SearchBarTile'
 import ArticleShowTile from '../components/ArticleShowTile'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -206,95 +207,98 @@ class GroupIndexContainer extends Component {
     })
   }
 
-  render() {
-    library.add(faHeart)
-    let groupTitle = "Your Groups:"
-    let featuredTitle = "Featured Groups:"
-    let signedInTiles = "Haven't mounted";
-    let articles;
-    if(this.state.groups != null && this.state.featuredGroups != null && this.state.groups.length < 3){
-      let arr = [1,2,3]
-      let number = -1
-      let number2 = 2
-      groupTitle = "Featured Groups:"
-      featuredTitle = ""
-      signedInTiles = arr.map(group => {
+render() {
+  library.add(faHeart)
+  let groupTitle = "Your Groups:"
+  let featuredTitle = "Featured Groups:"
+  let signedInTiles = "Haven't mounted";
+  let articles = null
+  if(this.state.groups != null && this.state.featuredGroups != null && this.state.groups.length < 3){
+    let arr = [1,2,3]
+    let number = -1
+    let number2 = 2
+    groupTitle = "Featured Groups:"
+    featuredTitle = ""
+    signedInTiles = arr.map(group => {
 
-        number++
-        number2++
-        return(
-          <GroupSignedInTile
-            key={this.state.featuredGroups[number2].id}
-            id={this.state.featuredGroups[number2].id}
-            name={this.state.featuredGroups[number2].name}
-            description={this.state.featuredGroups[number2].description}
-            interest={this.state.featuredGroups[number2].interest}
-            featured_name={this.state.featuredGroups[number].name}
-            featured_key={this.state.featuredGroups[number].id}
-            featured_id={this.state.featuredGroups[number].id}
-            featured_description={this.state.featuredGroups[number].description}
-            featured_interest={this.state.featuredGroups[number].interest}
-            followClick={this.followClick}
-            unfollowClick={this.unfollowClick}
-            user={this.state.user}
-          />
-        )
-      })
-    }else if(this.state.groups != null){
-
-      let count = -1
-      let groups = this.state.groups
-      let size = 3;
-      let threeGroups = groups.slice(0, size).map(group => {
-        return group
-      })
-      signedInTiles = threeGroups.map(group => {
-        count++
-        return(
-          <GroupSignedInTile
-          key={group.id}
-          id={group.id}
-          name={group.name}
-          description={group.description}
-          interest={group.interest}
-          featured_name={this.state.featuredGroups[count].name}
-          featured_key={this.state.featuredGroups[count].id}
-          featured_id={this.state.featuredGroups[count].id}
-          featured_description={this.state.featuredGroups[count].description}
-          featured_interest={this.state.featuredGroups[count].interest}
+      number++
+      number2++
+      return(
+        <GroupSignedInTile
+          key={this.state.featuredGroups[number2].id}
+          id={this.state.featuredGroups[number2].id}
+          name={this.state.featuredGroups[number2].name}
+          description={this.state.featuredGroups[number2].description}
+          interest={this.state.featuredGroups[number2].interest}
+          featured_name={this.state.featuredGroups[number].name}
+          featured_key={this.state.featuredGroups[number].id}
+          featured_id={this.state.featuredGroups[number].id}
+          featured_description={this.state.featuredGroups[number].description}
+          featured_interest={this.state.featuredGroups[number].interest}
           followClick={this.followClick}
           unfollowClick={this.unfollowClick}
           user={this.state.user}
-          />
-        )
-      })
-    }else{
+        />
+      )
+    })
+  }else if(this.state.groups != null){
 
-    }
+    let count = -1
+    let groups = this.state.groups
+    let size = 3;
+    let threeGroups = groups.slice(0, size).map(group => {
+      return group
+    })
+    signedInTiles = threeGroups.map(group => {
+      count++
+      return(
+        <GroupSignedInTile
+        key={group.id}
+        id={group.id}
+        name={group.name}
+        description={group.description}
+        interest={group.interest}
+        featured_name={this.state.featuredGroups[count].name}
+        featured_key={this.state.featuredGroups[count].id}
+        featured_id={this.state.featuredGroups[count].id}
+        featured_description={this.state.featuredGroups[count].description}
+        featured_interest={this.state.featuredGroups[count].interest}
+        followClick={this.followClick}
+        unfollowClick={this.unfollowClick}
+        user={this.state.user}
+        />
+      )
+    })
+  }
 
-    if (this.state.articles != null){
-      articles = this.state.articles.map(article => {
-        return(
-          <ArticleShowTile
-          key={article.id}
-          id={article.id}
-          title={article.title}
-          description={article.description}
-          url={article.url}
-          source={article.source}
-          image={article.image}
-          likeCount={article.likecount}
-          commentCount={article.commentcount}
-          likeClick={this.likeClick}
-          unlikeClick={this.unlikeClick}
-          commentClick={this.commentClick}
-          uncommentClick={this.uncommentClick}
-          user={this.state.user}
-          group_id={1}
-          />
-        )
-      })
-    }
+  let spinner = <ReactLoading type="bars" color="cadetblue" height={100} width={50} className="index-spinner"/>
+
+  if (this.state.articles != null){
+    articles = this.state.articles.map(article => {
+      return(
+        <ArticleShowTile
+        key={article.id}
+        id={article.id}
+        title={article.title}
+        description={article.description}
+        url={article.url}
+        source={article.source}
+        image={article.image}
+        likeCount={article.likecount}
+        commentCount={article.commentcount}
+        likeClick={this.likeClick}
+        unlikeClick={this.unlikeClick}
+        commentClick={this.commentClick}
+        uncommentClick={this.uncommentClick}
+        user={this.state.user}
+        group_id={1}
+        />
+      )
+    })
+    spinner = ""
+  }
+
+
 
     return(
       <div>
@@ -319,6 +323,7 @@ class GroupIndexContainer extends Component {
             {articles}
           </div>
         </div>
+        {spinner}
       </div>
     )
   }

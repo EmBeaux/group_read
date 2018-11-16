@@ -94,7 +94,15 @@ class ArticleShowTile extends Component {
     }else{
       image = this.props.image
     }
+    let Filter = require('bad-words')
+    let filter = new Filter();
 
+    let list = require('badwords-list')
+    let badWordArray = list.array
+    filter.addWords(...badWordArray)
+    
+    let title = filter.clean(this.props.title)
+    let description = filter.clean(this.props.description)
 
     library.add(faHeart)
     library.add(faComment)
@@ -107,13 +115,13 @@ class ArticleShowTile extends Component {
                   <p>{this.props.source}</p>
                 </div>
                 <div className="card-divider">
-                  <Link to={`${this.props.url}`} target="_blank">{this.props.title}</Link><br />
+                  <Link to={`${this.props.url}`} target="_blank">{title}</Link><br />
                 </div>
                 <div className="card-image">
                   <img src={`${image}`} />
                 </div>
                 <div className="card-section">
-              <h6>{this.props.description}<span onClick={this.handleCommentClick} className={this.state.commentClass}>&nbsp;{this.state.commentButton}<span className="comment-count">{this.state.commentCount}</span></span><span onClick={this.handleLikeClick} className={this.state.likeClass}>&nbsp;{this.state.likeButton}<span className="like-count">{this.state.likeCount}</span></span></h6>
+              <h6>{description}<span onClick={this.handleCommentClick} className={this.state.commentClass}>&nbsp;{this.state.commentButton}<span className="comment-count">{this.state.commentCount}</span></span><span onClick={this.handleLikeClick} className={this.state.likeClass}>&nbsp;{this.state.likeButton}<span className="like-count">{this.state.likeCount}</span></span></h6>
             </div>
             <div className="comment-form">
               {this.state.commentForm}
