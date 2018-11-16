@@ -24,4 +24,7 @@ before_action :authenticate_user!
     end
   end
 
+  def members
+
+  end
 end

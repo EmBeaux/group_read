@@ -135,7 +135,7 @@ class ArticleShowContainer extends Component {
         if(item.id == this.state.id){
           this.setState({
             group: item,
-            articles: responses[0],
+            articles: responses[0].articles,
             user: responses[2]
           })
         }
