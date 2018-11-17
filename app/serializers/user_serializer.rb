@@ -4,5 +4,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :groups
   has_many :memberships
   has_many :likes
-  has_many :articles, through: :likes
+  has_many :comments
 end

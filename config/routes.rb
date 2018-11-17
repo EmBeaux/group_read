@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   root 'groups#index'
   resources :groups
+
+  resources :groups do
+    get 'members', on: :member
+  end
   resources :users
 
   namespace :api do
@@ -13,6 +17,10 @@ Rails.application.routes.draw do
       resources :memberships
       resources :likes
       resources :comments
+
+      resources :groups do
+        get 'members', on: :member
+      end
     end
   end
 end

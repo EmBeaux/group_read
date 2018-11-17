@@ -5,14 +5,14 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, far, fas, faComment } from '@fortawesome/free-solid-svg-icons'
 
-class ArticleShowTile extends Component {
+class ArticleScrollTile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      likeClass: "like-btn",
+      likeClass: "scroll-like-btn",
       likeButton: <FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="heart" size="2x"/>,
       likeCount: this.props.likeCount,
-      commentClass: "comment-btn",
+      commentClass: "scroll-comment-btn",
       commentButton:  <FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="comment" size="2x"/>,
       commentCount: this.props.commentCount,
       commentForm: ""
@@ -27,7 +27,7 @@ class ArticleShowTile extends Component {
       for (let i=0; i < this.props.user.likes.length; i++) {
         if (this.props.user.likes[i].article_id == this.props.id){
           this.setState({
-            likeClass: "like-btn-true",
+            likeClass: "scroll-like-btn-true",
             likeButton: <FontAwesomeIcon color= 'red' prefix="fas" icon="heart" size="2x"/>
           })
         }
@@ -46,7 +46,7 @@ class ArticleShowTile extends Component {
       newCount = this.state.likeCount + 1
       this.props.likeClick(formPayload)
       this.setState({
-        likeClass: "like-btn-true",
+        likeClass: "scroll-like-btn-true",
         likeButton: <FontAwesomeIcon color= 'red' prefix="fas" icon="heart" size="2x" />,
         likeCount: newCount
       })
@@ -54,7 +54,7 @@ class ArticleShowTile extends Component {
       this.props.unlikeClick(formPayload)
       newCount = this.state.likeCount - 1
       this.setState({
-        likeClass: "like-btn",
+        likeClass: "scroll-like-btn",
         likeButton: <FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="heart" size="2x"/>,
         likeCount: newCount
       })
@@ -109,8 +109,8 @@ class ArticleShowTile extends Component {
     return (
         <div>
           <br />
-          <div className="column" id="article-card">
-            <div className="card" id="card-article">
+          <div className="column" id="scroll-column">
+            <div className="card" id="scroll-article">
               <div className="index_source">
                   <p>{this.props.source}</p>
                 </div>
@@ -121,7 +121,7 @@ class ArticleShowTile extends Component {
                   <img src={`${image}`} />
                 </div>
                 <div className="card-section">
-              <h6>{description}<span onClick={this.handleCommentClick} className={this.state.commentClass}>&nbsp;{this.state.commentButton}<span className="comment-count">{this.state.commentCount}</span></span><span onClick={this.handleLikeClick} className={this.state.likeClass}>&nbsp;{this.state.likeButton}<span className="like-count">{this.state.likeCount}</span></span></h6>
+              <h6>{description}<br /><span onClick={this.handleCommentClick} className={this.state.commentClass}>&nbsp;{this.state.commentButton}<span className="scroll-comment-count">{this.state.commentCount}</span></span><span onClick={this.handleLikeClick} className={this.state.likeClass}>&nbsp;{this.state.likeButton}<span className="scroll-like-count">{this.state.likeCount}</span></span></h6>
             </div>
             <div className="comment-form">
               {this.state.commentForm}
@@ -133,4 +133,4 @@ class ArticleShowTile extends Component {
   }
 }
 
-export default ArticleShowTile;
+export default ArticleScrollTile;

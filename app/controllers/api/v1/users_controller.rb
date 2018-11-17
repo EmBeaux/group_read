@@ -23,6 +23,6 @@ class Api::V1::UsersController < ApiController
         groups << group
       end
     end
-    {id: current_user.id, email: current_user.email, featured_groups: [groups[1], groups[2], groups[3], groups[4], groups[5], groups[6]], groups: current_user.groups.order("created_at desc"), memberships: current_user.memberships, likes: current_user.likes, articles: current_user.articles}
+    {id: current_user.id, email: current_user.email, featured_groups: [groups[1], groups[2], groups[3], groups[4], groups[5], groups[6]], groups: current_user.groups.order("created_at desc"), memberships: current_user.memberships, likes: current_user.likes, articles: current_user.articles, comments: current_user.comments}
   end
 end

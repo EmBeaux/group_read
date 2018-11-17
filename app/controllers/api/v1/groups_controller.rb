@@ -22,7 +22,9 @@ skip_before_action :verify_authenticity_token
       end
     end
 
-    render json: @group.articles.order("created_at desc")
+    json_object = {articles: @group.articles.order("created_at desc"), users: @group.users}
+
+    render json: json_object
   end
 
   def index
@@ -38,14 +40,21 @@ skip_before_action :verify_authenticity_token
 
   def create
     group = Group.new(group_params)
-
     if group.save
+      Membership.create(group_id: group.id, user_id: current_user.id)
 
       render json: group
     else
 
       render json: group.errors.full_messages
     end
+  end
+
+  def members
+    @group = Group.find(params[:id])
+    @users = @group.users
+
+    render json: @users
   end
 
   private
