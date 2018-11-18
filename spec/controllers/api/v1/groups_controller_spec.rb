@@ -1,7 +1,13 @@
 require 'rails_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
 RSpec.describe Api::V1::GroupsController, type: :controller do
   let!(:first_group) { Group.create(name: "First Group", interest: "Banana", description: "We are the first group")}
+  let!(:user) { FactoryBot.create(:user) }
+  before(:each) do
+    login_as(user, scope: :user)
+  end
 
   describe "GET#show" do
     it "the group's news feed made up of a list of articles" do
@@ -9,9 +15,9 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
-      expect(returned_json.length).to eq 20
-      expect(returned_json[0]["commentcount"]).to eq 0
-      expect(returned_json[0]["likecount"]).to eq 0
+      expect(returned_json["articles"][0]["commentcount"]).to eq 0
+      expect(returned_json["articles"][0]["likecount"]).to eq 0
+      expect(returned_json["articles"].length).to eq 20
     end
   end
 
