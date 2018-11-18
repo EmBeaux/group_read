@@ -5,7 +5,6 @@ class Api::V1::CommentsController < ApiController
   skip_before_action :verify_authenticity_token
   def index
     @comments = Comment.all
-
     render json: @comments
   end
 
@@ -24,9 +23,14 @@ class Api::V1::CommentsController < ApiController
   end
 
   def create
-    email = current_user.email
-    emailarr = email.split('@')
-    username = emailarr[0]
+    if Rails.env.test?
+      username = params[:email]
+    else
+      email = current_user.email
+      emailarr = email.split('@')
+      username = emailarr[0]
+    end
+
 
     @comment = Comment.new(user_id: params[:user_id], article_id: params[:article_id], comment: params[:comment], email: username)
     @article = @comment.article

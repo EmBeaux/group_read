@@ -13,18 +13,25 @@ skip_before_action :verify_authenticity_token
     'sortBy=popularity&' +
     "apiKey=#{ENV["NEWSAPI"]}";
 
-    @articles = HTTParty.get(@url, :headers =>{'Content-Type' => 'application/json'} )
-    @articles["articles"].each do |article|
-      if Article.find_by title: article["title"]
-        puts "Found"
-      else
-        Article.create!(title: article["title"], description: article["description"], url: article["url"], source: article["source"]["name"], image: article["urlToImage"], group_id: params["id"])
+    if Rails.env.test?
+      json_object = {articles: @group.articles.order("created_at desc"), users: @group.users}
+      render json: json_object
+    else
+      @articles = HTTParty.get(@url, :headers =>{'Content-Type' => 'application/json'} )
+      @articles["articles"].each do |article|
+        if Article.find_by title: article["title"]
+          puts "Found"
+        else
+          if article["description"] == nil
+            Article.create!(title: article["title"], description: "This is a filler description because none was given!", url: article["url"], source: article["source"]["name"], image: article["urlToImage"], group_id: @group.id)
+          else
+            Article.create!(title: article["title"], description: article["description"], url: article["url"], source: article["source"]["name"], image: article["urlToImage"], group_id: @group.id)
+          end
+        end
       end
+      json_object = {articles: @group.articles.order("created_at desc"), users: @group.users}
+      render json: json_object
     end
-
-    json_object = {articles: @group.articles.order("created_at desc"), users: @group.users}
-
-    render json: json_object
   end
 
   def index
