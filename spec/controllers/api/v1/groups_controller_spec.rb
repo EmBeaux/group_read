@@ -4,6 +4,10 @@ Warden.test_mode!
 
 RSpec.describe Api::V1::GroupsController, type: :controller do
   let!(:first_group) { Group.create(name: "First Group", interest: "Banana", description: "We are the first group")}
+  let!(:first_article) { Article.create(title: "Title of first article", description: "Description of first article", url: "https://google.com", source: "Buzzfeed", image: "https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_960_720.jpg", group_id: first_group.id)}
+  let!(:a_user) {User.create(email: "wow@wow.com", password: "something")}
+  let!(:membership) {Membership.create(user_id: a_user.id, group_id: first_group.id)}
+
   let!(:user) { FactoryBot.create(:user) }
   before(:each) do
     login_as(user, scope: :user)
@@ -17,7 +21,8 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
       expect(response.content_type).to eq("application/json")
       expect(returned_json["articles"][0]["commentcount"]).to eq 0
       expect(returned_json["articles"][0]["likecount"]).to eq 0
-      expect(returned_json["articles"].length).to eq 20
+      expect(returned_json["articles"].length).to eq 1
+      expect(returned_json["users"].length).to eq 1
     end
   end
 
