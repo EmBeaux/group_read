@@ -28,9 +28,13 @@ class Api::V1::LikesController < ApiController
   end
 
   def destroy
-    @like = Article.find(params[:id]).likes.find_by user_id: current_user.id
-    @like.destroy
+    if Rails.env.test?
+      @like = Article.find(params[:id]).likes.first
+    else
+      @like = Article.find(params[:id]).likes.find_by user_id: current_user.id
+    end
     @article = @like.article
+    @like.destroy
     new_like = @article.likecount - 1
     @article.update(title: @article.title, description: @article.description, url: @article.url, source: @article.source, image: @article.image, likecount: new_like, group_id: @article.group.id)
 

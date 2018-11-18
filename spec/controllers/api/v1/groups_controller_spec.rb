@@ -58,3 +58,23 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
     end
   end
 end
+
+#needed to test custum path way and it didn't work unless i made a new rspec describe with type => request
+RSpec.describe "get group members", :type => :request do
+  let!(:first_group) { Group.create(name: "First Group", interest: "Banana", description: "We are the first group")}
+  let!(:first_article) { Article.create(title: "Title of first article", description: "Description of first article", url: "https://google.com", source: "Buzzfeed", image: "https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_960_720.jpg", group_id: first_group.id)}
+  let!(:a_user) {User.create(email: "wow@wow.com", password: "something")}
+  let!(:membership) {Membership.create(user_id: a_user.id, group_id: first_group.id)}
+  before do
+    get "/api/v1/groups/#{first_group.id}/members"
+  end
+
+  describe "GET#members" do
+    it "returns all of a groups users" do
+      returned_json = JSON.parse(response.body)
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq("application/json")
+      expect(returned_json.length).to eq 1
+    end
+  end
+end

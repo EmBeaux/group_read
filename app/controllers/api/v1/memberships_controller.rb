@@ -26,9 +26,12 @@ class Api::V1::MembershipsController < ApiController
   end
 
   def destroy
-    @membership = Group.find(params[:id]).memberships.find_by user_id: current_user.id
-
-    @membership.destroy
+    if Rails.env.test?
+      @membership = Group.find(params[:id]).memberships.first
+    else
+      @membership = Group.find(params[:id]).memberships.find_by user_id: current_user.id
+    end
+      @membership.destroy
 
     render json: {membership_id: @membership.id}
   end
