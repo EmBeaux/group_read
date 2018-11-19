@@ -6,4 +6,6 @@ class Comment < ApplicationRecord
 
   belongs_to :article
   belongs_to :user
+  has_many :replies, foreign_key: "reply_id", class_name: "Comment"
+  belongs_to :reply, class_name: "Comment", optional: true
 end

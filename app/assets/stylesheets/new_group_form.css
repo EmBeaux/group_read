@@ -4,17 +4,7 @@
   margin-top: 2%;
 }
 
-.button-index{
-  background-color: #4677B0;
-  border-radius: 25px;
-  color: white;
-  padding: .8em;
-  float: left;
-}
 
-.button-index:hover{
-  color: white;
-}
 
 #new-group-wrap{
   margin-left: 20%;

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import ArticleShowTile from '../components/ArticleShowTile.js'
 import SearchBarTile from '../components/SearchBarTile.js'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, far, fas } from '@fortawesome/free-solid-svg-icons'
+
 
 class ArticleShowContainer extends Component {
   constructor(props) {
@@ -144,7 +142,7 @@ class ArticleShowContainer extends Component {
   }
 
   render() {
-    library.add(faHeart)
+
 
 
     let articles;
@@ -167,8 +165,6 @@ class ArticleShowContainer extends Component {
           commentClick={this.commentClick}
           uncommentClick={this.uncommentClick}
           user={this.state.user}
-          likeClass={"like-btn-true"}
-          likeButton={<FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="heart" size="2x"/>}
           group_id={this.props.params.id}
           />
         )
