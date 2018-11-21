@@ -4,7 +4,6 @@ import GroupSignedInTile from '../components/GroupSignedInTile.js'
 import { Link } from 'react-router'
 import { browserHistory } from 'react-router'
 import ReactLoading from 'react-loading';
-import SearchBarTile from '../components/SearchBarTile'
 import ArticleShowTile from '../components/ArticleShowTile'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -297,7 +296,6 @@ render() {
     return(
       <div>
         <div className="index-search" id="index-id-search">
-          <SearchBarTile/>
         </div>
         <div className="groups-index">
           <div className="circle-plus tooltip" onClick={this.handleGroupClick}>

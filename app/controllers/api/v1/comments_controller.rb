@@ -31,8 +31,13 @@ class Api::V1::CommentsController < ApiController
       username = emailarr[0]
     end
 
-
-    @comment = Comment.new(user_id: params[:user_id], article_id: params[:article_id], comment: params[:comment], email: username)
+    if params[:reply_id] != nil
+      @comment = Comment.new(user_id: params[:user_id], article_id: params[:article_id], comment: params[:comment], email: username, reply_id: params[:reply_id])
+      new_reply_count = @comment.reply.replycount + 1
+      @comment.reply.update(replycount: new_reply_count)
+    else
+      @comment = Comment.new(user_id: params[:user_id], article_id: params[:article_id], comment: params[:comment], email: username)
+    end
     @article = @comment.article
     new_comment = @article.commentcount + 1
     @article.update(title: @article.title, description: @article.description, url: @article.url, source: @article.source, image: @article.image, commentcount: new_comment, group_id: @article.group.id)

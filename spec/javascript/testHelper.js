@@ -3,8 +3,6 @@ import jasmineEnzyme from 'jasmine-enzyme';
 import React from 'react';
 import 'jasmine-ajax';
 import fetchPonyfill from 'fetch-ponyfill';
-import SearchBar from 'material-ui-search-bar'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const {fetch, Request, Response, Headers} = fetchPonyfill({});
 

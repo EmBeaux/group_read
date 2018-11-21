@@ -45,7 +45,7 @@ class UserGroupTile extends Component{
           <p>{this.props.interest}<span onClick={this.handleClick} className={this.state.btnClass}>&nbsp;{this.state.followButton}</span></p>
         </div>
         <div className="card-divider">
-          <Link to={`/groups/${this.props.id}`}>{this.props.name}</Link><br />
+          <Link to={`/groups/${this.props.id}`} id={this.props.id}>{this.props.name}</Link><br />
         </div>
         <div className="card-section">
           <h6>{this.props.description}</h6>

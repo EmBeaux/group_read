@@ -29,7 +29,7 @@ class FeaturedTile extends Component{
             <p>{this.props.featured_interest}<span onClick={this.handleClick} className={this.state.btnClass}>&nbsp;{this.state.followButton}</span></p>
           </div>
           <div className="card-divider">
-            <Link to={`/groups/${this.props.featured_id}`}>{this.props.featured_name}</Link><br />
+            <Link to={`/groups/${this.props.featured_id}`} id={this.props.featured_id}>{this.props.featured_name}</Link><br />
           </div>
           <div className="card-section" id="card-description">
             <h6>{this.props.featured_description}</h6>
