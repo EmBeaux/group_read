@@ -100,7 +100,7 @@ class ArticleShowTile extends Component {
     let list = require('badwords-list')
     let badWordArray = list.array
     filter.addWords(...badWordArray)
-    
+
     let title = filter.clean(this.props.title)
     let description = filter.clean(this.props.description)
 
@@ -121,7 +121,10 @@ class ArticleShowTile extends Component {
                   <img src={`${image}`} />
                 </div>
                 <div className="card-section">
-              <h6>{description}<span onClick={this.handleCommentClick} className={this.state.commentClass}>&nbsp;{this.state.commentButton}<span className="comment-count">{this.state.commentCount}</span></span><span onClick={this.handleLikeClick} className={this.state.likeClass}>&nbsp;{this.state.likeButton}<span className="like-count">{this.state.likeCount}</span></span></h6>
+              <h6>{description}</h6>
+              <div onClick={this.handleCommentClick} className={this.state.commentClass}>
+                {this.state.commentButton}&nbsp;{this.state.commentCount}&nbsp;{this.state.likeButton}&nbsp;{this.state.likeCount}
+              </div>
             </div>
             <div className="comment-form">
               {this.state.commentForm}

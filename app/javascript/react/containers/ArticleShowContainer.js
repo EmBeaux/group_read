@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import ArticleShowTile from '../components/ArticleShowTile.js'
-import SearchBarTile from '../components/SearchBarTile.js'
+// import SearchBarTile from '../components/SearchBarTile.js'
 
 
 class ArticleShowContainer extends Component {
@@ -64,7 +64,6 @@ class ArticleShowContainer extends Component {
     .then(body => {
     })
     .catch(error => console.error('Error:', error));
-    this.forceUpdate()
   }
 
   likeClick(formPayload){

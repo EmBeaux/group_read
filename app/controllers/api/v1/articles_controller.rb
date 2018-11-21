@@ -16,10 +16,10 @@ class Api::V1::ArticlesController < ApiController
         if Article.find_by title: article["title"]
           puts "Found"
         else
-          if article["description"] == nil
-            Article.create!(title: article["title"], description: "This is a filler description because none was given!", url: article["url"], source: article["source"]["name"], image: article["urlToImage"], group_id: @group.id)
-          else
+          if article["description"]
             Article.create!(title: article["title"], description: article["description"], url: article["url"], source: article["source"]["name"], image: article["urlToImage"], group_id: @group.id)
+          else
+            Article.create!(title: article["title"], description: "This is a filler description because none was given!", url: article["url"], source: article["source"]["name"], image: article["urlToImage"], group_id: @group.id)
           end
         end
       end

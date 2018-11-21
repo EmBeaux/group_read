@@ -15,7 +15,7 @@ const IndividualCommentTile = (props) => {
         <h5>{props.commentText}</h5>
       </div>
       <div className="reply-wrap">
-        <CommentReplyContainer comment_id={props.comment_id} replyCount={props.replyCount} replies={props.replies}/>
+        <CommentReplyContainer comment_id={props.comment_id} replyCount={props.replyCount} replies={props.replies} user_id={props.user_id} article_id={props.article_id}/>
       </div>
     </div>
   )

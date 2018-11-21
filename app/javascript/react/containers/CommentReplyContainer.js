@@ -19,19 +19,22 @@ class CommentReplyContainer extends Component {
     }
     this.handleCommentClick = this.handleCommentClick.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleClear = this.handleClear.bind(this)
+    this.handleCommentChange = this.handleCommentChange.bind(this)
   }
 
-
-
-
-  handleSubmit(formPayload){
-    let newCount = this.state.replyCount + 1
-    this.setState({
-      commentForm: "",
-      commentButton: <FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="comment"/>,
-      replyCount: newCount
-    })
+  handleCommentChange(event){
+    this.setState({comment: event.target.value})
   }
+
+  // handleSubmit(formPayload){
+  //   let newCount = this.state.replyCount + 1
+  //   this.setState({
+  //     commentForm: "",
+  //     commentButton: <FontAwesomeIcon color= '#E8ECF0' prefix="far" icon="comment"/>,
+  //     replyCount: newCount
+  //   })
+  // }
 
   handleCommentClick(){
     if(this.state.commentButton.props.color == '#E8ECF0'){
@@ -47,8 +50,53 @@ class CommentReplyContainer extends Component {
     }
   }
 
+  handleClear(){
+    this.setState({
+      comment: "",
+      comments: null
+    })
+  }
+
+
   componentDidMount(){
     this.setState({replies: this.props.replies})
+  }
+
+  handleSubmit(event){
+    event.preventDefault()
+
+    let payload = {
+      comment: this.state.comment,
+        user_id: this.props.user_id,
+        article_id: this.props.article_id,
+        reply_id: this.props.comment_id
+      }
+
+    fetch('api/v1/comments', {
+      credentials: 'same-origin',
+      method: "post",
+      body: JSON.stringify(payload),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+
+    })
+    .catch(error => console.error('Error:', error));
+
+    this.handleClear()
   }
 
 

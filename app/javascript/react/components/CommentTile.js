@@ -76,9 +76,9 @@ render(){
       mappedComments = comments.map(comment => {
         let emailArr = comment.email.split('@')
         let email = emailArr[0]
-        debugger
       return(
         <IndividualCommentTile
+          article_id={comment.article_id}
           replies={replies}
           user_id={comment.user_id}
           key={comment.id}
