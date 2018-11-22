@@ -64,10 +64,13 @@ render(){
   library.add(faCaretUp)
   let mappedComments = ["", ""]
   let comments = []
+  let replies = []
   if(this.state.comments != null){
     this.state.comments.forEach((comment) => {
-      if(comment.article_id == this.props.id){
+      if(comment.article_id == this.props.id && comment.reply == null){
           comments.push(comment)
+        }else if(comment.article_id == this.props.id && comment.reply != null){
+          replies.push(comment)
         }
       })
       mappedComments = comments.map(comment => {
@@ -75,10 +78,14 @@ render(){
         let email = emailArr[0]
       return(
         <IndividualCommentTile
+          article_id={comment.article_id}
+          replies={replies}
           user_id={comment.user_id}
           key={comment.id}
           commentText={comment.comment}
           email={email}
+          comment_id={comment.id}
+          replyCount={comment.replycount}
         />
       )
     })
@@ -99,6 +106,7 @@ render(){
           />
           <input type="submit" id="comment-submit" value="Submit"/>
         </form>
+        <h5>Comments:</h5>
         {mappedCommentsOrdered}
         <div className="collapse-arrow">
           <FontAwesomeIcon color= 'grey' prefix="fas" icon="caret-up" size="2x" onClick={this.props.handleCommentClick}/>

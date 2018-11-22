@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import GroupSignedInTile from '../components/GroupSignedInTile.js'
 import { Link } from 'react-router'
+import { browserHistory } from 'react-router'
 import ReactLoading from 'react-loading';
-import SearchBarTile from '../components/SearchBarTile'
 import ArticleShowTile from '../components/ArticleShowTile'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -24,6 +24,11 @@ class GroupIndexContainer extends Component {
     this.unlikeClick = this.unlikeClick.bind(this)
     this.commentClick = this.commentClick.bind(this)
     this.uncommentClick = this.uncommentClick.bind(this)
+    this.handleGroupClick = this.handleGroupClick.bind(this)
+  }
+
+  handleGroupClick(){
+    browserHistory.push(`/groups/new`)
   }
 
   likeClick(formPayload){
@@ -173,36 +178,24 @@ class GroupIndexContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/users')
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage);
-        throw(error);
-      }
+    let endpoints = [`/api/v1/users`, `/api/v1/articles`]
+
+    let promises = endpoints.map((endpoint) => {
+      return fetch(endpoint)
     })
-    .then(response => response.json())
-    .then(body => {
-        this.setState({
-          user: body,
-          featuredGroups: body.featured_groups,
-          groups: body.groups
-        })
-      fetch('/api/v1/articles')
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-          throw(error);
-        }
+
+    Promise.all(promises).then((responses) =>{
+      let parsedResponses = responses.map((response) => {
+        return response.json();
       })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({articles: body})
+      return Promise.all(parsedResponses)
+    })
+    .then(responses => {
+      this.setState({
+        user: responses[0],
+        featuredGroups: responses[0].featured_groups,
+        groups: responses[0].groups,
+        articles: responses[1]
       })
     })
   }
@@ -303,18 +296,29 @@ render() {
     return(
       <div>
         <div className="index-search" id="index-id-search">
-          <SearchBarTile/>
         </div>
         <div className="groups-index">
+          <div className="circle-plus tooltip" onClick={this.handleGroupClick}>
+            <div className="tooltiptext">
+              Click here to make a new group!
+            </div>
+            <div className="circle">
+              <div className="horizontal">
+              </div>
+
+              <div className="vertical">
+              </div>
+            </div>
+          </div>
           <h1 className="index-logo">Welcome to Group Read</h1>
             <div className="grid-x small-up-1 medium-up-3">
               <div className="cell small-6" id="your-groups-title">
-                <h3>{groupTitle}</h3>
-                <Link to="/groups/new" className="button-index">Make a new Group!</Link>
+                <h3 className="your-group-title">{groupTitle}</h3>
               </div>
 
+
               <div className="cell small-6" id="featured-groups-title">
-                <h3>{featuredTitle}</h3>
+                <h3 className="featured-group-title">{featuredTitle}</h3>
               </div>
             </div>
           {signedInTiles}

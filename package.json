@@ -13,8 +13,6 @@
     "babel-preset-react": "^6.24.1",
     "bad-words": "^3.0.0",
     "badwords-list": "^1.0.0",
-    "material-ui": "^0.20.2",
-    "material-ui-search-bar": "^0.4.2",
     "prop-types": "^15.6.2",
     "punycode": "^2.1.1",
     "react": "~15.4.2",
@@ -30,7 +28,6 @@
     "tachyons-components": "latest"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
     "babel-plugin-transform-runtime": "^6.23.0",
     "enzyme": "~2.9.1",
     "fetch-mock": "5",
@@ -38,7 +35,7 @@
     "jasmine-ajax": "3.2.0",
     "jasmine-core": "~2.4.1",
     "jasmine-enzyme": "~3.4.0",
-    "karma": "^3.1.1",
+    "karma": "~0.13.22",
     "karma-coverage": "0.5.5",
     "karma-jasmine": "~0.3.8",
     "karma-phantomjs-launcher": "~1.0.4",
@@ -47,7 +44,7 @@
     "karma-webpack": "2.0.1",
     "phantomjs-prebuilt": "~2.1.14",
     "react-addons-test-utils": "~15.6.2",
-    "webpack": "^3.11.0",
+    "sinon": "^7.1.1",
     "webpack-cli": "^2.0.10",
     "webpack-dev-server": "^2.11.1"
   },

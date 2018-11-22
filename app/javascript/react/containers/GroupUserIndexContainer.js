@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import SearchBarTile from '../components/SearchBarTile'
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+// import SearchBarTile from '../components/SearchBarTile'
 import UserShowTile from '../components/UserShowTile'
 
 class GroupUserIndexContainer extends Component {
@@ -60,7 +60,7 @@ class GroupUserIndexContainer extends Component {
     return(
       <div>
         <div className="index-search">
-          <SearchBarTile />
+          // <SearchBarTile />
         </div>
         <div>
           <h1>{users}</h1>
