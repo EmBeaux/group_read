@@ -9,7 +9,7 @@ skip_before_action :verify_authenticity_token
     end
     @url = 'https://newsapi.org/v2/everything?' +
     "q=#{@group["interest"]}&" +
-    'from=2018-10-30&' +
+    'from=2018-11-30&' +
     'sortBy=popularity&' +
     "apiKey=#{ENV["NEWSAPI"]}";
 
