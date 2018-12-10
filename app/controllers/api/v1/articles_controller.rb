@@ -4,7 +4,7 @@ class Api::V1::ArticlesController < ApiController
 
     @url = 'https://newsapi.org/v2/top-headlines?' +
     "q=#{@group["interest"]}&" +
-    'from=2018-10-30&' +
+    'from=2018-11-30&' +
     'sortBy=popularity&' +
     "apiKey=#{ENV["NEWSAPI"]}";
 

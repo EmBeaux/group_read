@@ -10,7 +10,7 @@ import sinon from 'sinon';
 
 
 
-describe('BikeShowContainer', () =>{
+describe('GroupIndexContainer', () =>{
   let wrapper;
   let currentUserData;
   let articleData;

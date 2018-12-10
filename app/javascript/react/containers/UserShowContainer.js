@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import UserGroupTile from '../components/UserGroupTile.js';
 // import SearchBar from 'material-ui-search-bar'
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { browserHistory } from 'react-router'
 // import SearchBarTile from '../components/SearchBarTile'
+import UserGroupTile from '../components/UserGroupTile.js'
 import ArticleScrollTile from '../components/ArticleScrollTile.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -304,7 +304,7 @@ class UserShowContainer extends Component {
     return(
       <div>
         <div className="index-search">
-          // <SearchBarTile />
+
         </div>
         <div className="grid-x small-up-1 medium-up-3">
           <div className="cell small-6" id="your-groups-title">

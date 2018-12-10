@@ -204,7 +204,7 @@ render() {
   library.add(faHeart)
   let groupTitle = "Your Groups:"
   let featuredTitle = "Featured Groups:"
-  let signedInTiles = "Haven't mounted";
+  let signedInTiles = <ReactLoading type="bars" color="cadetblue" height={100} width={50} className="index-spinner"/>
   let articles = null
   if(this.state.groups != null && this.state.featuredGroups != null && this.state.groups.length < 3){
     let arr = [1,2,3]
