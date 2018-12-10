@@ -146,7 +146,7 @@ beforeEach(() =>{
       {
         id: 12,
         name: "The Best Group",
-        interest": "tom brady",
+        interest: "tom brady",
         description: "This is a GOAT appreciation group."
       }
     ],
