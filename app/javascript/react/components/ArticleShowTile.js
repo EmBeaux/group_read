@@ -123,7 +123,10 @@ class ArticleShowTile extends Component {
                 <div className="card-section">
               <h6>{description}</h6>
               <div onClick={this.handleCommentClick} className={this.state.commentClass}>
-                {this.state.commentButton}&nbsp;{this.state.commentCount}&nbsp;{this.state.likeButton}&nbsp;{this.state.likeCount}
+                {this.state.commentButton}&nbsp;{this.state.commentCount}&nbsp;
+              </div>
+              <div onClick={this.handleLikeClick} className={this.state.likeClass}>
+                {this.state.likeButton}&nbsp;{this.state.likeCount}
               </div>
             </div>
             <div className="comment-form">
