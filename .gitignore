@@ -30,6 +30,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /public/packs-test
+/public/book_06g.png
 /node_modules
 yarn-debug.log*
 .yarn-integrity
