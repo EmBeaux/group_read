@@ -2,14 +2,14 @@
   position: absolute;
   cursor: pointer;
   color: black;
-  padding-left: 3.5em;
+  margin-left: 3.5em;
 }
 
 .like-btn-true{
   position: absolute;
   cursor: pointer;
   color: black;
-  padding-left: 3.5em;
+  margin-left: 3.5em;
 }
 
 .comment-btn{
