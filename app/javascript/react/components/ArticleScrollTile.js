@@ -94,13 +94,14 @@ class ArticleScrollTile extends Component {
     }else{
       image = this.props.image
     }
+    
     let Filter = require('bad-words')
     let filter = new Filter();
 
     let list = require('badwords-list')
     let badWordArray = list.array
     filter.addWords(...badWordArray)
-    
+
     let title = filter.clean(this.props.title)
     let description = filter.clean(this.props.description)
 
