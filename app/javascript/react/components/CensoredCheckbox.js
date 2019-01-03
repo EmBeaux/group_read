@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 const CensoredCheckbox = (props) => {
     let payload = {id: props.id, censored: !props.checked}
-
+    
     let handleSubmit = () => {
       props.handleCheck(payload)
     }

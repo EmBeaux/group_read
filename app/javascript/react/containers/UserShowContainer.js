@@ -23,6 +23,7 @@ class UserShowContainer extends Component {
     this.likeClick = this.likeClick.bind(this)
     this.unlikeClick = this.unlikeClick.bind(this)
     this.commentClick = this.commentClick.bind(this)
+    this.handleCheck = this.handleCheck.bind(this)
     this.uncommentClick = this.uncommentClick.bind(this)
   }
 
@@ -85,6 +86,7 @@ class UserShowContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
+      this.setState({censored: body})
     })
     .catch(error => console.error('Error:', error));
   }
