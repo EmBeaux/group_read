@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 
 const CensoredCheckbox = (props) => {
     let payload = {id: props.id, censored: !props.checked}
-    
+
     let handleSubmit = () => {
       props.handleCheck(payload)
     }
   return (
     <div>
-      <label htmlFor="censored">Censor articles?</label>
+      <label htmlFor="censored" style={{fontSize: "20px"}}>Censor articles?</label>
       <input
         type="checkbox"
         name={props.name}
