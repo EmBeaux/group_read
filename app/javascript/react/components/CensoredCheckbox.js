@@ -8,7 +8,7 @@ const CensoredCheckbox = (props) => {
     }
   return (
     <div>
-      <label htmlFor="censored" style={{fontSize: "20px"}}>Censor articles?</label>
+      <label htmlFor="censored" style={{fontSize: "20px"}}>Censor articles?<br />(performance dramatically decreased)</label>
       <input
         type="checkbox"
         name={props.name}
