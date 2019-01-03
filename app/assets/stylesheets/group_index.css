@@ -31,6 +31,7 @@
 }
 
 .circle-plus {
+  position: static !important;
   margin-left: 1em;
   margin-top: 1em;
   height: 1em;
@@ -83,8 +84,8 @@
     border: 1px solid black;
     /* Position the tooltip */
     position: absolute;
-    top: 4em;
-    left: 3.2em;
+    top: 8.8em;
+    left: 4.6em;
     z-index: 20;
 }
 
