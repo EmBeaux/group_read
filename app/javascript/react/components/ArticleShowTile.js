@@ -94,15 +94,25 @@ class ArticleShowTile extends Component {
     }else{
       image = this.props.image
     }
-    let Filter = require('bad-words')
-    let filter = new Filter();
+    let title;
+    let description;
 
-    let list = require('badwords-list')
-    let badWordArray = list.array
-    filter.addWords(...badWordArray)
+    if(this.props.user.censored){
+      let Filter = require('bad-words')
+      let filter = new Filter();
 
-    let title = filter.clean(this.props.title)
-    let description = filter.clean(this.props.description)
+      let list = require('badwords-list')
+      let badWordArray = list.array
+      filter.addWords(...badWordArray)
+
+      title = filter.clean(this.props.title)
+      description = filter.clean(this.props.description)
+      console.log("CENSORED")
+    }else{
+      title = this.props.title
+      description = this.props.description
+      console.log("NOT CENSORED")
+    }
 
     library.add(faHeart)
     library.add(faComment)
