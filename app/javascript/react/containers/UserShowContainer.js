@@ -216,6 +216,9 @@ class UserShowContainer extends Component {
 
   render() {
     let checkbox;
+    let settings;
+    let settingsTitle;
+    let tbd;
 
     if(this.state.current_user != null){
       if(this.state.current_user.id == this.props.params.id){
@@ -226,6 +229,9 @@ class UserShowContainer extends Component {
           handleCheck={this.handleCheck}
           checked={this.state.censored}
         />
+        settings = "settings"
+        settingsTitle = "Settings: "
+        tbd = "more settings to be added"
       }
     }
     library.add(faHeart)
@@ -336,8 +342,14 @@ class UserShowContainer extends Component {
         <div className="index-search">
 
         </div>
-        <div className="censored-form">
-          {checkbox}
+        <div className={settings}>
+          <h5 style={{fontWeight: "bold"}}>{settingsTitle}</h5>
+          <div className="censored-form">
+            {checkbox}
+          </div>
+          <div className="more-settings">
+            {tbd}
+          </div>
         </div>
         <div className="grid-x small-up-1 medium-up-3">
           <div className="cell small-6" id="your-groups-title">

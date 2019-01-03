@@ -14,15 +14,17 @@ const TextField = (props) => {
   return (
     <div>
       <label htmlFor={props.name} className={label}>{props.label}</label>
-    <input
-      type="text"
-      className="textField"
-      name={props.name}
-      value={props.content}
-      onChange={props.handleChange}
-      id={id}
-      />
-  </div>
+      <span>
+        <input
+          type="text"
+          className="textField"
+          name={props.name}
+          value={props.content}
+          onChange={props.handleChange}
+          id={id}
+        />
+      </span>
+    </div>
   )
 }
 
