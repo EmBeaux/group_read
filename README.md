@@ -1,6 +1,8 @@
 # GroupRead
 [![Build Status](https://codeship.com/projects/62ae2c10-bdd0-0136-9f6e-62daa5c189cd/status?branch=master)
 
+**HEROKU LINK IS CURRENTLY NOT WORKING, WORKING ON BUG FIX NOW**
+
 **"Group Read"** is a web site built for Users to interact with each other through user created groups. These groups have articles that are fetched from an external API; they are fetched based off of the interest of the group. The group's articles are then displayed on the group's page and users are free to interact through likes and comments.
 
 **Author**
