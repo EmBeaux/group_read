@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-// import SearchBar from 'material-ui-search-bar'
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { browserHistory } from 'react-router'
-// import SearchBarTile from '../components/SearchBarTile'
 import UserGroupTile from '../components/UserGroupTile.js'
+import CensoredCheckbox from '../components/CensoredCheckbox.js'
 import ArticleScrollTile from '../components/ArticleScrollTile.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,7 +15,8 @@ class UserShowContainer extends Component {
       user: null,
       groups: null,
       likedArticles: null,
-      current_user: null
+      current_user: null,
+      censored: false
     }
     this.followClick = this.followClick.bind(this)
     this.unfollowClick = this.unfollowClick.bind(this)
@@ -72,7 +71,22 @@ class UserShowContainer extends Component {
     .then(body => {
     })
     .catch(error => console.error('Error:', error));
-    this.forceUpdate()
+  }
+
+  handleCheck(payload){
+    fetch(`/api/v1/users/${payload.id}`,{
+      credentials: 'same-origin',
+      method: "put",
+      body: JSON.stringify(payload),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+    })
+    .catch(error => console.error('Error:', error));
   }
 
 
@@ -192,12 +206,26 @@ class UserShowContainer extends Component {
         likedArticles: responses[0].likes,
         commentedArticles: responses[0].comments,
         user: responses[0],
+        censored: responses[2].censored,
         current_user: responses[2]
       })
     })
   }
 
   render() {
+    let checkbox;
+
+    if(this.state.current_user != null){
+      if(this.state.current_user.id == this.props.params.id){
+        checkbox =
+        <CensoredCheckbox
+          id={this.state.current_user.id}
+          name="censored"
+          handleCheck={this.handleCheck}
+          checked={this.state.censored}
+        />
+      }
+    }
     library.add(faHeart)
 
     let newEmail = "abc"
@@ -305,6 +333,9 @@ class UserShowContainer extends Component {
       <div>
         <div className="index-search">
 
+        </div>
+        <div className="censored-form">
+          {checkbox}
         </div>
         <div className="grid-x small-up-1 medium-up-3">
           <div className="cell small-6" id="your-groups-title">
