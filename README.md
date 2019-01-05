@@ -9,7 +9,7 @@
 Matt Bowler
 
 **Heroku Link**
-https://pacific-refuge-30716.herokuapp.com/
+https://group-read.herokuapp.com/
 
 **List of Features**
 
