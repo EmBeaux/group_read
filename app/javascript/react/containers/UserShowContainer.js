@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { browserHistory } from 'react-router'
+import { browserHistory, Link } from 'react-router'
 import UserGroupTile from '../components/UserGroupTile.js'
 import CensoredCheckbox from '../components/CensoredCheckbox.js'
 import ArticleScrollTile from '../components/ArticleScrollTile.js'
@@ -218,7 +218,7 @@ class UserShowContainer extends Component {
     let checkbox;
     let settings;
     let settingsTitle;
-    let tbd;
+    let updatePass;
 
     if(this.state.current_user != null){
       if(this.state.current_user.id == this.props.params.id){
@@ -231,7 +231,7 @@ class UserShowContainer extends Component {
         />
         settings = "settings"
         settingsTitle = "Settings: "
-        tbd = "more settings to be added"
+        updatePass = <Link to={`/users/${this.state.current_user.id}/edit`}>Update Password?</Link>
       }
     }
     library.add(faHeart)
@@ -348,7 +348,7 @@ class UserShowContainer extends Component {
             {checkbox}
           </div>
           <div className="more-settings">
-            {tbd}
+            {updatePass}
           </div>
         </div>
         <div className="grid-x small-up-1 medium-up-3">

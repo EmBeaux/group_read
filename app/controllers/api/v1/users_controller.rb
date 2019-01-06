@@ -17,11 +17,20 @@ class Api::V1::UsersController < ApiController
 
   def update
     user = User.find(params[:id])
-    censored = params[:censored]
 
-    user.update(censored: censored)
+    if params[:censored]
+      censored = params[:censored]
 
-    render json: user.censored
+      user.update(censored: censored)
+
+      render json: user.censored
+    elsif params[:password]      
+      password = params[:password]
+
+      user.update(password: password)
+
+      render json: user.id
+    end
   end
 
   def current_user_info
