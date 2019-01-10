@@ -18,11 +18,13 @@
 .settings{
   background-color: #EAF5FC;
   height: 150px;
+  width: 175px;
   font-size: 25px;
   padding: 10px;
   margin-top: 1em;
-  margin-right: 1em;
-  float: right;
+  margin-right: 0.25em;
+  position: absolute;
+  right: 0;
   border-radius: 25px;
   overflow-y: scroll;
 }
@@ -41,9 +43,7 @@
 }
 
 #all-groups-scroll{
-  margin-left: 22em;
-  margin-top: 2em;
-  margin-bottom: 5em;
+  margin: auto;
 }
 
 .user-groups{
@@ -56,8 +56,7 @@
 }
 
 .all-groups{
-  margin-right: 10em;
-  margin-bottom: 5em;
+  margin: auto;
 }
 
 .item3{
