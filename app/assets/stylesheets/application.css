@@ -41,7 +41,7 @@ body{
 
 .logo-header{
   float: left;
-  display:inline;
+  display: inline;
 }
 
 ul.navbar-text{
@@ -49,7 +49,7 @@ ul.navbar-text{
   display: inline;
 }
 
-.top-bar-signout{
+/* .top-bar-signout{
   background-color: #FFFFFF;
   margin-left: 20em;
 }
@@ -57,8 +57,12 @@ ul.navbar-text{
 .top-bar-signout-signout{
   background-color: #FFFFFF;
   margin-left: 18em;
-}
+} */
 
 .welcome a{
-  
+
+}
+
+.top-bar-section{
+  margin-left: 0 !important;
 }
